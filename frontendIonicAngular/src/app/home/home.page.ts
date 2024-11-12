@@ -1,62 +1,81 @@
 import { Component } from '@angular/core';
 
+// Define an interface for the event structure
+interface Event {
+  title: string;
+  image: string;
+  date: string;
+  description: string;
+  posts: Array<{
+    title: string;
+    content: string;
+    comments: Array<{ author: string; text: string }>;
+    newComment: string;
+  }>;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  events = [
+  events: Event[] = [
     {
-      title: 'Hackathon 2024',
-      date: '20 Noiembrie 2024',
-      description: 'Concurs de programare destinat studenților și pasionaților de tehnologie. Formează o echipă și rezolvă provocări în 24 de ore!',
-      image: 'assets/images/images.png'
+      title: 'Event 1',
+      image: 'assets/icon/images.png',
+      date: '2024-11-12',
+      description: 'Description of Event 1',
+      posts: [
+        {
+          title: 'Post 1',
+          content: 'Content for post 1',
+          comments: [
+            { author: 'User1', text: 'Great post!' },
+            { author: 'User2', text: 'Thanks for sharing!' },
+          ],
+          newComment: '',
+        },
+        {
+          title: 'Post 2',
+          content: 'Content for post 2',
+          comments: [
+            { author: 'User3', text: 'Interesting thoughts.' },
+          ],
+          newComment: '',
+        },
+      ],
     },
     {
-      title: 'Workshop: Inteligența Artificială în 2024',
-      date: '25 Noiembrie 2024',
-      description: 'Învață bazele inteligenței artificiale și cum să construiești un model simplu de învățare automată. Organizator: Universitatea de Informatică.',
-      image: 'assets/images/ai-workshop.jpg'
+      title: 'Event 2',
+      image: 'event2.jpg',
+      date: '2024-11-14',
+      description: 'Description of Event 2',
+      posts: [],
     },
-    {
-      title: 'Seara Proiectelor Studențești',
-      date: '30 Noiembrie 2024',
-      description: 'Prezentarea celor mai inovative proiecte realizate de studenții din anul 3. Intrare liberă pentru toți studenții.',
-      image: 'assets/images/student-projects.jpg'
-    },
-    {
-      title: 'Conferință: Viitorul Tehnologiei Cloud',
-      date: '5 Decembrie 2024',
-      description: 'Participă la discuții despre impactul și viitorul tehnologiei Cloud. Speakeri invitați din industria IT.',
-      image: 'assets/images/cloud-conference.jpg'
-    },
-    {
-      title: 'Eveniment de Networking IT',
-      date: '10 Decembrie 2024',
-      description: 'Ocazia perfectă să întâlnești profesioniști din domeniul IT și să-ți extinzi rețeaua profesională. Organizator: Clubul de Informatică.',
-      image: 'assets/images/networking-event.jpg'
-    },
-    {
-      title: 'Competiție de Algoritmică',
-      date: '15 Decembrie 2024',
-      description: 'Testează-ți abilitățile de algoritmică și rezolvarea de probleme. Premiile includ burse și stagii de practică.',
-      image: 'assets/images/algorithm-competition.jpg'
-    }
   ];
 
-  constructor() {}
+  currentUser = 'John Doe'; // Example current user, replace with actual authentication
 
-  joinEvent(event: any) {
-    console.log('Te-ai înscris la evenimentul: ${event.title}');
+  // Typing event as 'Event' to fix implicit 'any' type
+  joinEvent(event: Event) {
+    console.log('Joining event:', event);
+    // Add logic to handle joining event
   }
 
-  viewEvent(event: any) {
-    console.log('Vizualizezi detalii pentru: ${event.title}');
+  // Typing event as 'Event' to fix implicit 'any' type
+  viewEvent(event: Event) {
+    console.log('Viewing event:', event);
+    // Add logic to view event details
   }
 
-  logout() {
-    console.log('Te-ai deconectat.');
-    // Poți adăuga logica de logout aici.
+  addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
+    if (post.newComment.trim()) {
+      post.comments.push({
+        author: this.currentUser, // Use dynamic current user here
+        text: post.newComment,
+      });
+      post.newComment = ''; // Reset the input field after adding a comment
+    }
   }
 }

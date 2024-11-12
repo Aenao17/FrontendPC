@@ -1,142 +1,383 @@
-/* General styles */
-.content-bg {
-  --background: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-#container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 16px;
-}
-
-/* Footer styles */
-.footer {
-  position: relative;
-  height: 150px; /* Adjusted height */
-  background: transparent; /* No background, blends with content */
+/* General section styling */
+* {
+  margin: 0;
   padding: 0;
-  border: none; /* Removes any visible footer line */
-  display: flex;
-  align-items: flex-end; /* Align image to bottom */
-  justify-content: center;
+  box-sizing: border-box;
 }
 
-.footer-image {
-  width: 100%; /* Full-width image */
-  height: 100%; /* Height matches footer */
-  object-fit: cover; /* Ensures image scales without distortion */
+/* Set the entire page background color to white */
+html, body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Transparent toolbar */
+.custom-toolbar {
+  --background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-shadow: none;
+  border-radius: 0;
   position: absolute;
-  bottom: 0; /* Stick to bottom */
+  top: 0;
   left: 0;
-  z-index: -1; /* Behind content */
-  opacity: 1; /* Ensure colors are vibrant */
-  pointer-events: none; /* Non-interactive */
+  right: 0;
+  z-index: 2;
+  background-color: transparent;
 }
 
-/* Toolbar animation */
-.animated-toolbar {
-  background: linear-gradient(90deg, #FF7043, #FFFFFF, #4CAF50, #2196F3);
-  background-size: 200% 200%;
-  animation: toolbarGradientAnimation 5s ease-in-out infinite alternate;
+/* Logo styling */
+.header-logo {
+  margin-left: 910px;
+  height: 70px;
+  width: auto;
 }
 
-@keyframes toolbarGradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Card styles */
-.rounded-card {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background: white;
-}
-
-.rounded-img {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  height: 200px;
-  object-fit: cover;
-}
-
-ion-card-title {
-  color: #FF7043;
-  font-weight: bold;
-}
-
-ion-card-subtitle {
-  color: #666;
-}
-
-/* Button group styling */
-.button-group {
+/* Navigation links */
+.nav-links {
   display: flex;
-  justify-content: center;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #FF7043;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #FFB74D;
+}
+
+/* Promo section styling */
+.promo-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px;
+  color: #000;
+  margin-top: 0;
+  background-color: white;
+  background-image: url("/assets/illustrations/Asset 4@4x.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 98vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Promo text styling */
+.promo-text h1 {
+  font-size: 2.2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #000;
+}
+
+.promo-text p {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1.6;
+}
+
+/* Button group styling for promo section */
+.promo-buttons {
+  display: flex;
   gap: 15px;
-  margin-top: 10px;
 }
 
 /* Button styles */
-.small-button {
-  width: 130px;
-  height: 50px;
-  border-radius: 30px;
-  font-size: 16px;
+.promo-button,
+.small-button,
+.log-out-button,
+.add-comment-button {
+  background: linear-gradient(45deg, #FF7043, #FFB74D); /* Gradient background for all buttons */
+  color: white; /* White text */
   font-weight: bold;
+  border: none;
+  padding: 8px 15px; /* Adjusted padding */
+  border-radius: 25px; /* Rounded corners */
+  font-size: 0.9rem; /* Font size matching the sign-in button */
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 4px;
-  color: #FF7043;
+  justify-content: center; /* Center the text/icon */
+  gap: 8px; /* Gap between icon and text */
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none; /* Remove focus outline */
+  border: none; /* Ensure no border */
+}
+
+.log-out-button{
+  margin-right: 30px;
+}
+
+.promo-button:focus,
+.small-button:focus,
+.log-out-button:focus,
+.add-comment-button:focus {
+  outline: none; /* Remove the default blue outline */
+  box-shadow: 0 0 0 2px rgba(255, 112, 67, 0.5); /* Optional: Add a custom focus outline */
+}
+
+/* Hover Effect for Buttons */
+.promo-button:hover,
+.small-button:hover,
+.log-out-button:hover,
+.add-comment-button:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  background: linear-gradient(45deg, #FF8A65, #FF7043); /* Darker gradient on hover */
+}
+
+/* Add comment button with similar login style */
+.add-comment-button {
+  background: linear-gradient(45deg, #FF7043, #FFB74D); /* Gradient background for all buttons */
+  color: #fff; /* White text */
+  font-weight: bold;
+  border: none;
+  padding: 8px 15px; /* Adjusted padding */
+  border-radius: 25px; /* Rounded corners */
+  font-size: 0.9rem; /* Font size matching the sign-in button */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the text/icon */
+  gap: 8px; /* Gap between icon and text */
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Updated Events Section */
+#container {
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column; /* Stack cards vertically */
+  gap: 20px; /* Space between cards */
+  padding: 16px;
   background-color: white;
-  border: 3px solid transparent;
-  background-clip: padding-box, border-box;
-  background: linear-gradient(white, white) padding-box,
-  linear-gradient(45deg, #FF7043, #FFB74D, #FF7043) border-box;
-  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Updated rounded card */
+.rounded-card {
+  width: 100%; /* Increase width to make the cards wider */
+  max-width: 1600px; /* Optional: set a maximum width for readability */
+  margin: 0 auto; /* Center align cards */
+  background-color: white; /* Set background to white */
+  border-radius: 10px; /* Add rounded corners to the card */
+  padding: 30px; /* More padding inside the card */
+  height: auto; /* Increase height to make the cards longer */
+  position: relative;
+  overflow: hidden; /* Prevent content from spilling out of the card */
+  transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.rounded-card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Card image styling */
+.rounded-img {
+  width: 100%;
+  height: 250px; /* Increase height of the image */
+  object-fit: cover; /* Ensures consistent image size */
+}
+
+/* Card header and content styling */
+ion-card-header {
+  padding: 15px 10px;
+}
+
+ion-card-title {
+  font-size: 1.8rem; /* Increase title font size */
+  color: #0b0606; /* Changed from #333 to white */
+  margin-bottom: 8px;
+}
+
+ion-card-subtitle {
+  font-size: 1.1rem; /* Increase subtitle font size */
+  color: #0b0606; /* Changed from #666 to white */
+}
+
+ion-card-content {
+  font-size: 1rem; /* Adjust content font size */
+  color: #0b0606; /* Changed from #333 to white */
+  padding: 10px;
+}
+.post-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Asigură că imaginea se potrivește perfect în container */
+  image-rendering: optimizeQuality;; /* Poți ajusta în funcție de înălțimea dorită */
+}
+/* New post container with scroll effect */
+.post-container {
+  background-color: #ffffff;
+  max-height: 300px;/* Limit the height of the posts container */
+  overflow-y: auto;
+  padding-right: 10px; /* Prevent scrollbar overlap */
+  transition: max-height 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Add hover effect to trigger scrolling */
+.rounded-card:hover .post-container {
+  background-color: antiquewhite;
+  max-height: 450px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+   /* Increase height on hover to allow more posts to be visible */
+}
+
+/* Post content styling */
+.post-content {
+  font-size: 1rem; /* Controls font size for better readability */
+  line-height: 1.6; /* Increases line spacing for easier reading */
+  color: white; /* Changed from #333 to white */
+  margin-bottom: 15px; /* Adds space below the post content */
+  padding: 10px; /* Adds padding inside the paragraph */
+  background-color: white; /* Light background to separate it from other elements */
+  border-radius: 8px; /* Slightly rounded corners for a soft look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  overflow-wrap: break-word; /* Ensures long words wrap correctly */
+}
+
+.post-card {
+  background-color: antiquewhite; /* Light gray background */
+  padding: 15px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+.post-1 {
+  background-color: #FFEBEE; /* Light red */
+}
+
+.post-2 {
+  background-color: #E3F2FD; /* Light blue */
+}
+
+/* Optional: Add hover effect to change background color */
+.post-card:hover {
+  background-color: #ffb74d; /* Slightly darker gray on hover */
+}
+/* Center-align buttons and add padding */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+
+.small-button {
+  padding: 8px 15px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #FF7043, #FFB74D);
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  border: none;
 }
 
 .small-button:hover {
-  transform: scale(1.08);
-  background: linear-gradient(white, white) padding-box,
-  linear-gradient(45deg, #FF7043, #FFB74D, #FF8A65) border-box;
+  transform: scale(1.1);
+  background: linear-gradient(45deg, #ff7043, #ffb74d);
 }
 
-.button-icon {
+.add-comment-button {
+  width: 40%; /* Full width under content */
+  margin: 10px auto;
+  display: block;
+  outline: none;
+}
+
+/* Footer Wave Styling */
+/* Footer Wave Styling */
+.footer-wave-container {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Imaginea de fundal a footer-ului */
+.footer-wave-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Footer Info container - textul va fi plasat deasupra imaginii */
+.footer-info {
+  position: absolute; /* Plasează textul deasupra imaginii */
+  bottom: 0; /* Plasează textul în partea de jos a containerului */
+  left: 0;
+  right: 0;
+  margin-bottom: 280px;
+  padding: 30px 20px;
+  text-align: center;
+  color: #ff7043; /* Textul va fi alb pentru a fi vizibil pe imagine */
   font-size: 18px;
-  color: inherit;
-  margin-right: 1px;
+  z-index: 2; /* Asigură-te că textul va fi deasupra imaginii */
 }
 
-/* Responsive tweaks */
+/* Stil pentru secțiunea de contacte din footer */
+.footer-info .contact-details {
+  width: 100%; /* Schimbă la 100% pentru a ocupa întreaga lățime pe ecrane mici */
+  text-align: left;
+  margin-bottom: 30px; /* Adaugă spațiu sub fiecare secțiune */
+}
+
+/* Stiluri pentru linkuri */
+.footer-info a {
+  color: #FF7043;
+  margin-bottom: 30px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-info a:hover {
+  color: #FFB74D;
+}
+
+/* Adaptează stilurile pentru mobile */
 @media (max-width: 768px) {
-  #container {
-    padding: 8px;
-    gap: 12px;
+  .footer-info {
+    font-size: 12px;
+    padding: 20px 10px;
+    text-align: left; /* Textul se aliniează la stânga pentru dispozitive mobile */
   }
 
-  .footer-image {
-    height: 120px; /* Reduce image height for tablets */
+  /* Face secțiunile mai largi pe mobil */
+  .footer-info .contact-details {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+
+  .footer-info .social-links {
+    margin-bottom: 30px;
+    text-align: center; /* Centrarea iconițelor pe mobil */
+  }
+
+  .footer-info .social-links a {
+    font-size: 20px; /* Mărimea iconițelor pentru mobil */
   }
 }
 
 @media (max-width: 480px) {
-  ion-card-title {
-    font-size: 18px;
+  .footer-info {
+    font-size: 11px; /* Diminuează și mai mult fontul pe ecrane foarte mici */
+    padding: 15px 5px; /* Ajustează padding-ul pentru mobil */
   }
 
-  .footer-image {
-    height: 100px; /* Smaller height for phones */
+  /* Redu dimensiunea iconițelor pe dispozitive mai mici */
+  .footer-info .social-links a {
+    font-size: 18px;
   }
 }
