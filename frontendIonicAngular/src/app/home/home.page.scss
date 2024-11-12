@@ -1,27 +1,106 @@
+/* General styles */
+.content-bg {
+  --background: #fff;
+}
+
 #container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-toolbar {
+  --border-radius: 15px;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+/* Gradient animation for toolbar */
+.animated-toolbar {
+  background: linear-gradient(90deg, #FF7043, #FFFFFF, #4CAF50, #2196F3);
+  background-size: 300% 300%; /* Asigură tranziții fluide pe toată lățimea */
+  animation: toolbarGradientAnimation 7s infinite alternate;
 }
 
-#container a {
-  text-decoration: none;
+@keyframes toolbarGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Card styles */
+.rounded-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.rounded-img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 200px;
+  object-fit: cover;
+}
+
+ion-card-title {
+  color: #FF7043;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  color: #666;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Button style with white center and thicker gradient border */
+.small-button {
+  width: 130px; /* Button width */
+  height: 50px; /* Button height */
+  border-radius: 30px; /* Rounded edges */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px; /* Reduced gap between icon and text */
+  color: #FF7043; /* Text color (matching border color) */
+  background-color: white; /* White center */
+  border: 3px solid transparent;
+  background-clip: padding-box, border-box;
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(45deg, #FF7043, #FFB74D, #FF7043) border-box; /* Orange gradient border */
+  transition: transform 0.3s ease, border-image 0.3s ease;
+}
+
+/* Hover effect */
+.small-button:hover {
+  transform: scale(1.05);
+}
+
+/* Active effect */
+.small-button:active {
+  transform: scale(0.95);
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(45deg, #FFB74D, #FF7043, #FF8A65) border-box; /* Inverted gradient on click */
+}
+
+/* Icon styling within button */
+.button-icon {
+  font-size: 18px; /* Size of the icon */
+  color: inherit;
+  margin-right: 1px; /* Smaller margin between icon and text */
 }

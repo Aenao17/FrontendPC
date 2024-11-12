@@ -1,20 +1,46 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-title>
-      Blank
+      <span style="color: #FF7043; font-weight: bold;">StudentSpark</span>
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="content-bg">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">
+        <span style="color: #FF7043; font-weight: bold;">Evenimente</span>
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card *ngFor="let event of events" class="rounded-card">
+      <ion-img [src]="event.image" class="rounded-img"></ion-img>
+      <ion-card-header>
+        <ion-card-title>{{ event.title }}</ion-card-title>
+        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ event.description }}
+      </ion-card-content>
+      <div class="button-group">
+        <button class="small-button" (click)="joinEvent(event)">
+          <ion-icon name="checkmark-circle-outline" class="button-icon"></ion-icon>
+          JOIN
+        </button>
+
+        <button class="small-button" (click)="viewEvent(event)">
+          <ion-icon name="eye-outline" class="button-icon"></ion-icon>
+          VEZI DETALII
+        </button>
+      </div>
+    </ion-card>
   </div>
 </ion-content>
