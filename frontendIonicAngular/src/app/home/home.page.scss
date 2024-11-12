@@ -15,27 +15,23 @@
 /* Footer styles */
 .footer {
   position: relative;
+  height: 200px; /* Adjust height as needed */
+  background: transparent; /* Blend with the content background */
   display: flex;
-  justify-content: flex-end; /* Align image to the right */
-  align-items: center;
-  height: 150px; /* Footer height */
-  background-color: #f8f8f8; /* Optional background */
-  padding: 16px;
+  align-items: flex-end; /* Ensure image stays aligned to bottom */
+  justify-content: center; /* Center image horizontally */
+  padding: 0;
 }
 
 .footer-image {
+  width: 100%; /* Make the image span the entire width of the page */
+  height: auto; /* Maintain aspect ratio */
   position: absolute;
-  bottom: 0; /* Align to bottom of the footer */
-  right: 16px; /* Adjust as needed */
-  width: 120px; /* Adjust size as needed */
-  height: auto;
-  z-index: 1; /* Ensure it stays visible */
-  opacity: 0.8; /* Optional transparency */
+  bottom: 0; /* Stick to the bottom of the footer */
+  left: 0;
+  z-index: -1; /* Ensure it stays behind content */
+  opacity: 0.3; /* Optional: Adjust transparency for blending */
   pointer-events: none; /* Non-interactive */
-}
-
-ion-footer {
-  --border-radius: 20px 20px 0 0; /* Optional rounded top for footer */
 }
 
 /* Toolbar animation */
@@ -129,7 +125,7 @@ ion-card-subtitle {
   }
 
   .footer-image {
-    width: 100px; /* Smaller size on tablets */
+    width: 100%; /* Image remains full width on smaller screens */
   }
 }
 
@@ -139,6 +135,6 @@ ion-card-subtitle {
   }
 
   .footer-image {
-    width: 80px; /* Even smaller size on phones */
+    width: 100%;
   }
 }
