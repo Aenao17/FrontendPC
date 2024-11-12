@@ -1,27 +1,144 @@
+/* General styles */
+.content-bg {
+  --background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
 #container {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+}
 
+/* Footer styles */
+.footer {
+  position: relative;
+  display: flex;
+  justify-content: flex-end; /* Align image to the right */
+  align-items: center;
+  height: 150px; /* Footer height */
+  background-color: #f8f8f8; /* Optional background */
+  padding: 16px;
+}
+
+.footer-image {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0; /* Align to bottom of the footer */
+  right: 16px; /* Adjust as needed */
+  width: 120px; /* Adjust size as needed */
+  height: auto;
+  z-index: 1; /* Ensure it stays visible */
+  opacity: 0.8; /* Optional transparency */
+  pointer-events: none; /* Non-interactive */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+ion-footer {
+  --border-radius: 20px 20px 0 0; /* Optional rounded top for footer */
 }
 
-#container p {
+/* Toolbar animation */
+.animated-toolbar {
+  background: linear-gradient(90deg, #FF7043, #FFFFFF, #4CAF50, #2196F3);
+  background-size: 200% 200%;
+  animation: toolbarGradientAnimation 5s ease-in-out infinite alternate;
+}
+
+@keyframes toolbarGradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Card styles */
+.rounded-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.rounded-img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 200px;
+  object-fit: cover;
+}
+
+ion-card-title {
+  color: #FF7043;
+  font-weight: bold;
+}
+
+ion-card-subtitle {
+  color: #666;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+/* Button styles */
+.small-button {
+  width: 130px;
+  height: 50px;
+  border-radius: 30px;
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #FF7043;
+  background-color: white;
+  border: 3px solid transparent;
+  background-clip: padding-box, border-box;
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(45deg, #FF7043, #FFB74D, #FF7043) border-box;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
-#container a {
-  text-decoration: none;
+.small-button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(45deg, #FF7043, #FFB74D, #FF8A65) border-box;
+}
+
+.button-icon {
+  font-size: 18px;
+  color: inherit;
+  margin-right: 1px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  #container {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .footer-image {
+    width: 100px; /* Smaller size on tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  ion-card-title {
+    font-size: 18px;
+  }
+
+  .footer-image {
+    width: 80px; /* Even smaller size on phones */
+  }
 }
