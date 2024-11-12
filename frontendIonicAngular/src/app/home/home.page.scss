@@ -1,8 +1,80 @@
+/* General header styling */
+.custom-toolbar {
+  --background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Adds spacing on sides */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds subtle shadow under header */
+}
+
+.header-logo {
+  height: 40px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #FF7043;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #FFB74D; /* Lighter orange for hover */
+}
+
+/* Sign-in button styling */
+.sign-in-button {
+  background: linear-gradient(45deg, #FF7043, #FFB74D);
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.sign-in-button ion-icon {
+  font-size: 18px;
+  color: #fff;
+}
+
+.sign-in-button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #FF8A65, #FF7043); /* Darker on hover */
+}
+
+.sign-in-button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none; /* Hide nav links on smaller screens */
+  }
+
+  .sign-in-button {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
 /* General styles */
 .content-bg {
   --background: #fff;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #container {
@@ -12,28 +84,19 @@
   padding: 16px;
 }
 
-/* Footer styles */
-.footer {
+/* Footer Wave Image Styles */
+.footer-wave-container {
   position: relative;
-  height: 150px; /* Adjusted height */
-  background: transparent; /* No background, blends with content */
-  padding: 0;
-  border: none; /* Removes any visible footer line */
-  display: flex;
-  align-items: flex-end; /* Align image to bottom */
-  justify-content: center;
+  width: 100%; /* Full width of viewport */
+  overflow: hidden; /* Ensure it doesn’t spill out horizontally */
+  margin-top: 20px; /* Space above the footer image */
 }
 
-.footer-image {
-  width: 100%; /* Full-width image */
-  height: 100%; /* Height matches footer */
-  object-fit: cover; /* Ensures image scales without distortion */
-  position: absolute;
-  bottom: 0; /* Stick to bottom */
-  left: 0;
-  z-index: -1; /* Behind content */
-  opacity: 1; /* Ensure colors are vibrant */
-  pointer-events: none; /* Non-interactive */
+.footer-wave-image {
+  width: 100%; /* Ensure the image spans the width of the viewport */
+  height: auto; /* Keep the aspect ratio */
+  display: block; /* Ensures no unexpected space below image */
+  z-index: 0; /* Ensures the image stays behind text */
 }
 
 /* Toolbar animation */
@@ -126,8 +189,8 @@ ion-card-subtitle {
     gap: 12px;
   }
 
-  .footer-image {
-    height: 120px; /* Reduce image height for tablets */
+  .footer-wave-image {
+    height: 150px; /* Smaller height for tablets */
   }
 }
 
@@ -136,7 +199,7 @@ ion-card-subtitle {
     font-size: 18px;
   }
 
-  .footer-image {
-    height: 100px; /* Smaller height for phones */
+  .footer-wave-image {
+    height: 120px; /* Smaller height for phones */
   }
 }

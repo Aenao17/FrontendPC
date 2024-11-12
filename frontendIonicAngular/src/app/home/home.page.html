@@ -1,25 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="light" class="animated-toolbar">
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
     <ion-title>
-      <span style="color: #FF7043; font-weight: bold;">StudentSpark</span>
+      <img src="assets/illustrations/logo-orange.png" alt="Logo" class="header-logo">
     </ion-title>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+      <a href="#">Pricing</a>
+      <a href="#">Newsletter</a>
+    </div>
     <ion-buttons slot="end">
-      <ion-button (click)="logout()">
-        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
-      </ion-button>
+      <button class="sign-in-button">
+        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Sign In Now
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-bg">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">
-        <span style="color: #FF7043; font-weight: bold;">Evenimente</span>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <!-- Main Content -->
   <div id="container">
     <ion-card *ngFor="let event of events" class="rounded-card">
       <ion-img [src]="event.image" class="rounded-img"></ion-img>
@@ -44,8 +44,8 @@
     </ion-card>
   </div>
 
-  <!-- Footer with decorative image -->
-  <ion-footer class="footer">
-    <img src="assets/illustrations/Asset 3@4x.png" alt="Illustration" class="footer-image">
-  </ion-footer>
+  <!-- Footer Wave Image -->
+  <div class="footer-wave-container">
+    <img src="assets/illustrations/Asset 3@4x.png" alt="Footer Wave" class="footer-wave-image">
+  </div>
 </ion-content>
