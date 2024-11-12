@@ -15,22 +15,24 @@
 /* Footer styles */
 .footer {
   position: relative;
-  height: 200px; /* Adjust height as needed */
-  background: transparent; /* Blend with the content background */
-  display: flex;
-  align-items: flex-end; /* Ensure image stays aligned to bottom */
-  justify-content: center; /* Center image horizontally */
+  height: 150px; /* Adjusted height */
+  background: transparent; /* No background, blends with content */
   padding: 0;
+  border: none; /* Removes any visible footer line */
+  display: flex;
+  align-items: flex-end; /* Align image to bottom */
+  justify-content: center;
 }
 
 .footer-image {
-  width: 100%; /* Make the image span the entire width of the page */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%; /* Full-width image */
+  height: 100%; /* Height matches footer */
+  object-fit: cover; /* Ensures image scales without distortion */
   position: absolute;
-  bottom: 0; /* Stick to the bottom of the footer */
+  bottom: 0; /* Stick to bottom */
   left: 0;
-  z-index: -1; /* Ensure it stays behind content */
-  opacity: 0.3; /* Optional: Adjust transparency for blending */
+  z-index: -1; /* Behind content */
+  opacity: 1; /* Ensure colors are vibrant */
   pointer-events: none; /* Non-interactive */
 }
 
@@ -125,7 +127,7 @@ ion-card-subtitle {
   }
 
   .footer-image {
-    width: 100%; /* Image remains full width on smaller screens */
+    height: 120px; /* Reduce image height for tablets */
   }
 }
 
@@ -135,6 +137,6 @@ ion-card-subtitle {
   }
 
   .footer-image {
-    width: 100%;
+    height: 100px; /* Smaller height for phones */
   }
 }
