@@ -1,45 +1,94 @@
 <ion-header>
   <ion-toolbar class="custom-toolbar">
     <ion-title>
-      <img src="assets/illustrations/logo-orange.png" alt="Logo" class="header-logo">
+      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo">
     </ion-title>
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">About</a>
-      <a href="#">Pricing</a>
-      <a href="#">Newsletter</a>
-    </div>
     <ion-buttons slot="end">
-      <button class="sign-in-button">
-        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Sign In Now
+      <button class="log-out-button">
+        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-bg">
-  <!-- Main Content -->
+  <!-- Promo Section -->
+  <div class="promo-section">
+    <div class="promo-text">
+      <h1>Welcome to StudentSpark</h1>
+      <p>Your journey to exciting events starts here. Join us today!</p>
+      <div class="promo-buttons">
+        <button class="promo-button">
+          <ion-icon name="information-circle-outline"></ion-icon> About Us
+        </button>
+        <button class="promo-button">
+          <ion-icon name="mail-outline"></ion-icon> Contact
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Section -->
   <div id="container">
     <ion-card *ngFor="let event of events" class="rounded-card">
-      <ion-img [src]="event.image" class="rounded-img"></ion-img>
-      <ion-card-header>
-        <ion-card-title>{{ event.title }}</ion-card-title>
-        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        {{ event.description }}
-      </ion-card-content>
+
+      <!-- Event Image -->
+      <ion-img [src]="event.image" class="rounded-img post-image"></ion-img> <!-- Added class 'post-image' -->
+
+      <!-- Action Buttons: Join and View Details -->
       <div class="button-group">
         <button class="small-button" (click)="joinEvent(event)">
           <ion-icon name="checkmark-circle-outline" class="button-icon"></ion-icon>
           JOIN
         </button>
-
         <button class="small-button" (click)="viewEvent(event)">
           <ion-icon name="eye-outline" class="button-icon"></ion-icon>
           VEZI DETALII
         </button>
+      </div>
+
+      <!-- Event Header -->
+      <ion-card-header>
+        <ion-card-title>{{ event.title }}</ion-card-title>
+        <ion-card-subtitle>{{ event.date }}</ion-card-subtitle>
+      </ion-card-header>
+
+      <!-- Event Description -->
+      <ion-card-content>
+        {{ event.description }}
+      </ion-card-content>
+
+      <!-- Event Posts and Comments -->
+      <div *ngFor="let post of event.posts" class="post">
+        <ion-card class="post-card">
+          <!-- Post Title -->
+          <ion-card-header>
+            <ion-card-title>{{ post.title }}</ion-card-title>
+          </ion-card-header>
+
+          <!-- Post Content -->
+          <ion-card-content>
+            <p class="post-content">{{ post.content }}</p> <!-- Added post-content class -->
+
+            <!-- Comments Section -->
+            <div *ngFor="let comment of post.comments" class="comment">
+              <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p>
+            </div>
+
+            <!-- Add Comment Section -->
+            <div class="add-comment-section">
+              <ion-input
+                [(ngModel)]="post.newComment"
+                placeholder="Add a comment"
+                class="comment-input"
+              ></ion-input>
+              <ion-button class="add-comment-button" (click)="addComment(post)">
+                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>
+                Add Comment
+              </ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
       </div>
     </ion-card>
   </div>
@@ -47,5 +96,23 @@
   <!-- Footer Wave Image -->
   <div class="footer-wave-container">
     <img src="assets/illustrations/Asset 3@4x.png" alt="Footer Wave" class="footer-wave-image">
+
+    <!-- Footer Info cu textul deasupra imaginii -->
+    <div class="footer-info">
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <p>Cluj-Napoca, Cluj</p>
+        <p>Phone: 010-020-0340</p>
+        <p>Email: <a href="mailto:events&#64;studentspark.co">info&#64;company.co</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-links">
+          <a href="https://facebook.com" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+          <a href="https://twitter.com" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+          <a href="https://instagram.com" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
