@@ -67,7 +67,7 @@ export class HomePage implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        
+
     }
 
     // Typing event as 'Event' to fix implicit 'any' type
@@ -80,6 +80,10 @@ export class HomePage implements OnInit {
     viewEvent(event: Event) {
         console.log('Viewing event:', event);
         // Add logic to view event details
+    }
+
+    addEvent(){
+        this.router.navigateByUrl('/add-event');
     }
 
     addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
