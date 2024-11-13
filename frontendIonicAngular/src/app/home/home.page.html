@@ -1,85 +1,85 @@
 <ion-header>
-  <ion-toolbar class="custom-toolbar">
-    <ion-title>
-      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear" class="log-out-button" (click)="logout()">
-        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar class="custom-toolbar">
+        <ion-title>
+            <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clear" class="log-out-button" (click)="logout()">
+                <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-bg">
-  <!-- Promo Section -->
-  <div class="promo-section">
-    <div class="promo-text">
-      <h1>Welcome to StudentSpark</h1>
-      <p>Your journey to exciting events starts here. Join us today!</p>
-      <div class="promo-buttons">
-        <ion-button fill="clear" class="promo-button">
-          <ion-icon name="information-circle-outline"></ion-icon> About Us
-        </ion-button>
-        <ion-button fill="clear" class="promo-button">
-          <ion-icon name="mail-outline"></ion-icon> Contact
-        </ion-button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Events Section -->
-  <div id="container">
-    <ion-card *ngFor="let event of events" class="rounded-card">
-
-      <!-- Event Image -->
-      <ion-img [src]="event.image" class="rounded-img post-image"></ion-img> <!-- Added class 'post-image' -->
-
-      <!-- Action Buttons: Join and View Details -->
-      <div class="button-group">
-        <ion-button fill="clear" class="small-button" (click)="joinEvent(event)">
-          <ion-icon name="checkmark-circle-outline" class="button-icon"></ion-icon>
-          JOIN
-        </ion-button>
-        <ion-button fill="clear" class="small-button" (click)="viewEvent(event)">
-          <ion-icon name="eye-outline" class="button-icon"></ion-icon>
-          VEZI DETALII
-        </ion-button>
-      </div>
-
-      <!-- Event Header -->
-      <ion-card-header>
-        <ion-card-title>{{ event.name }}</ion-card-title>
-        <ion-card-subtitle>{{ event.date | date }}</ion-card-subtitle>
-      </ion-card-header>
-
-      <!-- Event Description -->
-      <ion-card-content>
-        {{ event.description }}
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <!-- Footer Wave Image -->
-  <div class="footer-wave-container">
-    <img src="assets/illustrations/Asset 3@4x.png" alt="Footer Wave" class="footer-wave-image">
-
-    <!-- Footer Info cu textul deasupra imaginii -->
-    <div class="footer-info">
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <p>Cluj-Napoca, Cluj</p>
-        <p>Phone: 010-020-0340</p>
-        <p>Email: <a href="mailto:events&#64;studentspark.co">info&#64;company.co</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <div class="social-links">
-          <a href="https://facebook.com" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
-          <a href="https://twitter.com" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
-          <a href="https://instagram.com" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+    <!-- Promo Section -->
+    <div class="promo-section">
+        <div class="promo-text">
+            <h1>Welcome to StudentSpark</h1>
+            <p>Your journey to exciting events starts here. Join us today!</p>
+            <div class="promo-buttons">
+                <ion-button fill="clear" class="promo-button">
+                    <ion-icon name="information-circle-outline"></ion-icon> About Us
+                </ion-button>
+                <ion-button fill="clear" class="promo-button">
+                    <ion-icon name="mail-outline"></ion-icon> Contact
+                </ion-button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- Events Section -->
+    <div id="container">
+        <ion-card *ngFor="let event of events" class="rounded-card">
+
+            <!-- Event Image -->
+            <ion-img [src]="event.image" class="rounded-img post-image"></ion-img>
+
+            <!-- Action Buttons: Join and View Details -->
+            <div class="button-group">
+                <ion-button fill="clear" class="small-button" (click)="joinEvent(event)">
+                    <ion-icon name="checkmark-circle-outline" class="button-icon"></ion-icon>
+                    JOIN
+                </ion-button>
+                <ion-button fill="clear" class="small-button" (click)="viewEvent(event)">
+                    <ion-icon name="eye-outline" class="button-icon"></ion-icon>
+                    VEZI DETALII
+                </ion-button>
+            </div>
+
+            <!-- Event Header -->
+            <ion-card-header>
+                <ion-card-title>{{ event.name }}</ion-card-title>
+                <ion-card-subtitle>{{ event.date | date }}</ion-card-subtitle>
+            </ion-card-header>
+
+            <!-- Event Description -->
+            <ion-card-content>
+                {{ event.description }}
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+    <!-- Footer Wave Image -->
+    <div class="footer-wave-container">
+        <img src="assets/illustrations/Asset 3@4x.png" alt="Footer Wave" class="footer-wave-image">
+
+        <!-- Footer Info cu textul deasupra imaginii -->
+        <div class="footer-info">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Cluj-Napoca, Cluj</p>
+                <p>Phone: 010-020-0340</p>
+                <p>Email: <a href="mailto:events&#64;studentspark.co">info&#64;company.co</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+                    <a href="https://twitter.com" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+                    <a href="https://instagram.com" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>

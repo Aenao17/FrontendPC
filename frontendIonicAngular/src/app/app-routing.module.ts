@@ -23,11 +23,13 @@ const routes: Routes = [
     },
     {
         path: 'event',
-        loadChildren: () => import('./pages/event/event.module').then(m => m.EventPageModule)
+        loadChildren: () => import('./pages/event/event.module').then(m => m.EventPageModule),
+        canActivate: [AuthGuard]
     },
     {
         path: 'event/:id',
         loadChildren: () => import('./pages/event/event.module').then(m => m.EventPageModule),
+        canActivate: [AuthGuard]
     },
 ];
 
