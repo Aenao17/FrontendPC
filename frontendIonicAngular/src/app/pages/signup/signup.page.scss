@@ -1,155 +1,137 @@
-body {
-    background-color: #f0f0f0;
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-}
+/* Importă fontul Poppins din Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #f7a500, #f2c29f, #f7a500, #f2c29f);
-    background-size: 300% 300%;
-    animation: movingBackground 10s ease-in-out infinite;
-    z-index: -1;
-    opacity: 0.2;
+/* Setează fontul global pentru întregul document */
+body {
+  font-family: 'Poppins', sans-serif; /* Folosește Poppins pentru tot textul */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f0f0; /* Fundal alb pentru orice zonă fără imagine */
+  background-image: url('/assets/illustrations/Asset 6@4x.png'); /* Calea imaginii */
+  background-position: center center; /* Centrează imaginea pe pagină */
+  background-size: 80% 60%; /* Acoperă întreaga pagină */
+  background-repeat: no-repeat; /* Nu repeta imaginea */
+  z-index: 0; /* Imaginea trebuie să fie în spate */
 }
 
 .container {
-    position: absolute;
-    width: 450px;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/illustrations/Asset 6@4x.png');
+  background-size: 70%; /* Acoperă întreaga pagină */
+  background-position: center center; /* Centrează imaginea */
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 10;
 }
 
 .signup-form {
-    width: 100%;
-    max-width: 450px;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transform: scale(0.9);
-    opacity: 0;
-    animation: formEntrance 1s ease-out forwards;
-    transition: transform 0.3s ease-in-out;
+  width: 100%;
+  max-width: 450px; /* Poți ajusta dimensiunea formularului */
+  padding: 40px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent pentru formular */
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  z-index: 3; /* Formularul este deasupra imaginii */
+}
 
-    &:hover {
-        transform: scale(1.05);
-    }
+.signup-form:hover {
+  transform: scale(1.05);
+}
 
-    h2 {
-        color: #f7a500;
-        font-size: 36px;
-        font-weight: bold;
-        margin-bottom: 30px;
-        letter-spacing: 2px;
-    }
+.signup-form h2 {
+  font-family: 'Poppins', sans-serif; /* Setează fontul Poppins pentru titlu */
+  color: #f7a500;
+  font-size: 48px; /* Mărimea fontului a fost crescută pentru a fi mai evident */
+  font-weight: bold;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Adaugă o umbră subtilă pentru un efect 3D */
+  text-transform: uppercase;
+}
 
-    .form-group {
-        margin-bottom: 25px;
-        text-align: left;
-        position: relative;
+.form-group {
+  margin-bottom: 25px;
+  text-align: left;
+  position: relative;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 18px;
-            color: #666;
-            font-weight: 500;
-        }
+.form-group label {
+  font-family: 'Poppins', sans-serif; /* Asigură-te că etichetele folosesc fontul Poppins */
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #666;
+  font-weight: 500;
+}
 
-        input {
-            width: 100%;
-            padding: 18px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f7f7f7;
-            font-size: 18px;
-            color: #333;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-            position: relative;
+.form-group input {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 18px;
+  color: #333;
+  transition: all 0.3s ease;
+}
 
-            &::before {
-                content: "";
-                position: absolute;
-                top: 5px;
-                left: 5px;
-                right: 5px;
-                bottom: 5px;
-                border-radius: 8px;
-                background: rgba(247, 165, 0, 0.2);
-                opacity: 0;
-                transition: all 0.3s ease;
-                pointer-events: none;
-            }
+.form-group input:focus {
+  border-color: #f7a500;
+  outline: none;
+  box-shadow: 0 0 10px rgba(247, 165, 0, 0.5);
+}
 
-            &:focus {
-                border-color: #f7a500;
-                outline: none;
-                box-shadow: 0 0 10px rgba(247, 165, 0, 0.5);
-            }
+button {
+  font-family: 'Poppins', sans-serif; /* Asigură-te că butoanele folosesc Poppins */
+  width: 100%;
+  padding: 15px;
+  background-color: #f7a500;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
 
-            &:focus::before {
-                opacity: 1;
-            }
-        }
-    }
+button:hover {
+  background-color: #e69300;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(247, 165, 0, 0.6);
+}
 
-    button {
-        width: 100%;
-        padding: 15px;
-        background-color: #f7a500;
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        transition:
-            background-color 0.3s ease,
-            transform 0.2s ease,
-            box-shadow 0.3s ease;
-        position: relative;
+button:active {
+  background-color: #d57b00;
+  transform: scale(1);
+}
 
-        &:hover {
-            background-color: #e69300;
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(247, 165, 0, 0.6);
-        }
+a {
+  font-family: 'Poppins', sans-serif; /* Asigură-te că linkurile folosesc Poppins */
+  color: #f7a500;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: text-decoration 0.3s ease;
+}
 
-        &:active {
-            background-color: #d57b00;
-            transform: scale(1);
-        }
-    }
-
-    a {
-        color: #f7a500;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 15px;
-        font-size: 16px;
-        font-weight: 500;
-        transition: text-decoration 0.3s ease;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+a:hover {
+  text-decoration: underline;
 }
