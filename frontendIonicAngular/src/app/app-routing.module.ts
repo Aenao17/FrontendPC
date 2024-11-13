@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
     {
@@ -16,15 +17,28 @@ const routes: Routes = [
     {
         path: 'login',
         loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule),
+        canActivate: [LoginGuard]
     },
     {
         path: 'signup',
-        loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule)
+        loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule),
+        canActivate: [LoginGuard]
     },
-  {
-    path: 'add-event',
-    loadChildren: () => import('./pages/add-event/add-event.module').then( m => m.AddEventPageModule)
-  },
+    {
+        path: 'event',
+        loadChildren: () => import('./pages/event/event.module').then(m => m.EventPageModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'event/:id',
+        loadChildren: () => import('./pages/event/event.module').then(m => m.EventPageModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'add-event',
+        loadChildren: () => import('./pages/add-event/add-event.module').then( m => m.AddEventPageModule),
+        canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

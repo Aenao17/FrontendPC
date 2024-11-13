@@ -7,5 +7,15 @@ import { environment } from "src/environments/environment.prod";
     providedIn: 'root',
 })
 export class EventService {
+    private apiUrl = `${environment.apiUrl}/events`;
+
     constructor(private http: HttpClient) { }
+
+    public getEvents() {
+        return lastValueFrom(this.http.get(this.apiUrl));
+    }
+
+    public getEvent(id: string) {
+        return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
+    }
 }

@@ -1,45 +1,40 @@
 <ion-header>
-  <ion-toolbar class="custom-toolbar">
-    <ion-title>
-      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear" class="button-gradient" (click)="logout()">
-        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar class="custom-toolbar">
+        <ion-title>
+            <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clear" class="log-out-button" (click)="logout()">
+                <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="content-bg">
-  <div class="form-container">
-    <!-- Form for adding an event -->
-    <ion-card class="add-event-card">
-      <form (ngSubmit)="addEvent()" class="add-event-form">
-        <ion-item>
-          <ion-label position="floating">Title</ion-label>
-          <ion-input type="text" name="title" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Description</ion-label>
-          <ion-textarea name="description" required></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Date</ion-label>
-          <ion-input type="date" name="date" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Location</ion-label>
-          <ion-input type="text" name="location" required></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Image URL</ion-label>
-          <ion-input type="text" name="image" required></ion-input>
-        </ion-item>
-        <ion-button type="submit" expand="block" class="button-gradient">
-          <ion-icon name="add-circle-outline"></ion-icon> Add Event
-        </ion-button>
-      </form>
-    </ion-card>
-  </div>
+    <div class="form-container">
+        <ion-card class="add-event-card">
+            <form (ngSubmit)="addEvent()" class="add-event-form">
+                <ion-item>
+                    <ion-label position="floating">Title</ion-label>
+                    <ion-input type="text" name="title" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Description</ion-label>
+                    <ion-textarea name="description" required></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Date</ion-label>
+                    <ion-input type="date" name="date" required></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating">Image URL</ion-label>
+                    <ion-input type="text" name="image" required></ion-input>
+                </ion-item>
+                <ion-button fill="clear" type="submit" expand="block" class="add-event-button">
+                    <ion-icon name="add-circle-outline"></ion-icon> Add Event
+                </ion-button>
+            </form>
+        </ion-card>
+    </div>
 </ion-content>

@@ -6,68 +6,67 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = `${environment.apiUrl}/users`; // Adjust API URL
-  private id: string = '';
+    private apiUrl = `${environment.apiUrl}/users`;
+    private id: string = '';
 
-  constructor(
-    private http: HttpClient,
-    private storage: StorageService,
-    private router: Router
-  ) {
-    setTimeout(() => {
-      this.storage.get('id').then((id) => {
-        this.id = id;
-      }).catch((err) => {
-        console.error(err);
-      });
-    }, 2000);
-  }
-
-  login(username: string, password: string): Promise<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    const body = {
-      id: 1,
-      role: 'USER',
-      username: username,
-      password: password,
-      email: 'email',
-      fullname: 'fullName',
-      organizedEvents: [],
-      comments: []
+    constructor(
+        private http: HttpClient,
+        private storage: StorageService,
+        private router: Router
+    ) {
+        setTimeout(() => {
+            this.storage.get('id').then((id) => {
+                this.id = id;
+            }).catch((err) => {
+                console.error(err);
+            });
+        }, 2000);
     }
-    return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
-  }
 
-  signup(username: string, password: string, email: string, fullname: string): Promise<any> {
-    //make a signup request to the server
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    login(username: string, password: string): Promise<any> {
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json'
+        // });
 
-    const body = {
-      id: 1,
-      role: 'USER',
-      username: username,
-      password: password,
-      email: email,
-      fullname: fullname,
-      organizedEvents: [],
-      comments: []
-    };
-    return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
-  }
+        const body = {
+            id: 1,
+            role: 'USER',
+            username,
+            password,
+            email: '',
+            fullname: '',
+            organizedEvents: [],
+            comments: []
+        }
+        return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
+    }
 
-  logout() {
-    this.storage.remove('id').then(() => {
-      this.router.navigateByUrl('/login');
-    }).catch((err) => {
-      console.error(err);
-    });
-  }
+    signup(username: string, password: string, email: string, fullname: string): Promise<any> {
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json'
+        // });
+
+        const body = {
+            id: 1,
+            role: 'USER',
+            username,
+            password,
+            email,
+            fullname,
+            organizedEvents: [],
+            comments: []
+        };
+        return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
+    }
+
+    logout() {
+        this.storage.remove('id').then(() => {
+            this.router.navigateByUrl('/login');
+        }).catch((err) => {
+            console.error(err);
+        });
+    }
 }
