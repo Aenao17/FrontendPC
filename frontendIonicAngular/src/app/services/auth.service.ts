@@ -11,7 +11,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<any> {
+  login(username: string, password: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -21,13 +21,15 @@ export class AuthService {
       role: 'USER',
       username: username,
       password: password,
+      email: 'email',
+      fullname: 'fullName',
       organizedEvents: [],
       comments: []
     }
     return this.http.post(`${this.apiUrl}/login`, body);
   }
 
-  signup(username: string, password: string): Observable<any> {
+  signup(username: string, password: string, email: string, fullname: string): Observable<any> {
     //make a signup request to the server
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -38,6 +40,8 @@ export class AuthService {
       role: 'USER',
       username: username,
       password: password,
+      email: email,
+      fullname: fullname,
       organizedEvents: [],
       comments: []
     };
