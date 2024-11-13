@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
+import { Event } from '../interfaces/event';
+import { EventService } from '../services/event.service';
 
 // Define an interface for the event structure
-interface Event {
-    title: string;
-    image: string;
-    date: string;
-    description: string;
-    posts: Array<{
-        title: string;
-        content: string;
-        comments: Array<{ author: string; text: string }>;
-        newComment: string;
-    }>;
-}
+// interface Event {
+//     title: string;
+//     image: string;
+//     date: string;
+//     description: string;
+//     posts: Array<{
+//         title: string;
+//         content: string;
+//         comments: Array<{ author: string; text: string }>;
+//         newComment: string;
+//     }>;
+// }
 
 @Component({
     selector: 'app-home',
@@ -23,49 +25,54 @@ interface Event {
 })
 export class HomePage implements OnInit {
     public events: Event[] = [
-        {
-            title: 'Event 1',
-            image: 'assets/icon/images.png',
-            date: '2024-11-12',
-            description: 'Description of Event 1',
-            posts: [
-                {
-                    title: 'Post 1',
-                    content: 'Content for post 1',
-                    comments: [
-                        { author: 'User1', text: 'Great post!' },
-                        { author: 'User2', text: 'Thanks for sharing!' },
-                    ],
-                    newComment: '',
-                },
-                {
-                    title: 'Post 2',
-                    content: 'Content for post 2',
-                    comments: [
-                        { author: 'User3', text: 'Interesting thoughts.' },
-                    ],
-                    newComment: '',
-                },
-            ],
-        },
-        {
-            title: 'Event 2',
-            image: 'event2.jpg',
-            date: '2024-11-14',
-            description: 'Description of Event 2',
-            posts: [],
-        },
+        // {
+        //     name: 'Event 1',
+        //     image: 'assets/icon/images.png',
+        //     date: new Date('2024-11-12'),
+        //     description: 'Description of Event 1',
+        //     posts: [
+        //         {
+        //             name: 'Post 1',
+        //             description: 'Content for post 1',
+        //             comments: [
+        //                 { id: 1, user: { username: 'User1' }, message: 'Great post!', post: { id: 1 } },
+        //                 { id: 1, user: { username: 'User2' }, message: 'Thanks for sharing!', post: { id: 1 } },
+        //             ],
+        //             newComment: '',
+        //         },
+        //         {
+        //             name: 'Post 2',
+        //             description: 'Content for post 2',
+        //             comments: [
+        //                 { id: 1, user: { username: 'User3' }, message: 'Interesting thoughts.' },
+        //             ],
+        //             newComment: '',
+        //         },
+        //     ],
+        // },
+        // {
+        //     name: 'Event 2',
+        //     image: 'event2.jpg',
+        //     date: new Date('2024-11-14'),
+        //     description: 'Description of Event 2',
+        //     posts: [],
+        // },
     ];
 
     public currentUser = 'John Doe';
 
     constructor(
+        private eventService: EventService,
         private storage: StorageService,
         private router: Router,
     ) { }
 
-    ngOnInit(): void {
-        
+    async ngOnInit() {
+        try {
+            this.events = await this.eventService.getEvents() as Event[];
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     // Typing event as 'Event' to fix implicit 'any' type
@@ -76,8 +83,7 @@ export class HomePage implements OnInit {
 
     // Typing event as 'Event' to fix implicit 'any' type
     viewEvent(event: Event) {
-        console.log('Viewing event:', event);
-        // Add logic to view event details
+        this.router.navigateByUrl(`/event/${event.id}`);
     }
 
     addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
