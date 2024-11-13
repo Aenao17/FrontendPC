@@ -13,15 +13,6 @@ body {
     overflow: hidden;
 }
 
-@keyframes movingBackground {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 300px 300px;
-    }
-}
-
 body::before {
     content: "";
     position: absolute;
@@ -36,12 +27,18 @@ body::before {
     opacity: 0.2;
 }
 
-.signup-container {
+.container {
+    position: absolute;
+    width: 450px;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.signup-form {
     width: 100%;
     max-width: 450px;
     padding: 40px;
-    margin-top: 2%;
-    margin-left: 29%;
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -154,16 +151,5 @@ body::before {
         &:hover {
             text-decoration: underline;
         }
-    }
-}
-
-@keyframes formEntrance {
-    0% {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
     }
 }

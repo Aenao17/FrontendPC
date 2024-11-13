@@ -35,3 +35,23 @@ body {
     padding: 0;
     // overflow-x: hidden;
 }
+
+@keyframes movingBackground {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 300px 300px;
+    }
+}
+
+@keyframes formEntrance {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

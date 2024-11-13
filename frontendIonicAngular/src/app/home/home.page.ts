@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../services/storage.service';
+import { Router } from '@angular/router';
 
 // Define an interface for the event structure
 interface Event {
@@ -19,7 +21,7 @@ interface Event {
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
     public events: Event[] = [
         {
             title: 'Event 1',
@@ -57,6 +59,15 @@ export class HomePage {
 
     public currentUser = 'John Doe';
 
+    constructor(
+        private storage: StorageService,
+        private router: Router,
+    ) { }
+
+    ngOnInit(): void {
+        
+    }
+
     // Typing event as 'Event' to fix implicit 'any' type
     joinEvent(event: Event) {
         console.log('Joining event:', event);
@@ -77,5 +88,13 @@ export class HomePage {
             });
             post.newComment = ''; // Reset the input field after adding a comment
         }
+    }
+
+    logout() {
+        this.storage.remove('id').then(() => {
+            this.router.navigateByUrl('/login');
+        }).catch((err) => {
+            console.error(err);
+        });
     }
 }

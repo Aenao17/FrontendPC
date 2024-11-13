@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-
+import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { StorageService } from './storage.service';
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class AuthService {
+  private apiUrl = `${environment.apiUrl}/users`; // Adjust API URL
+  private id: string = '';
 
-  private apiUrl = 'http://localhost:8080/api/users'; // Adjust API URL
-
-    constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router
+  ) {
+    setTimeout(() => {
+      this.storage.get('id').then((id) => {
+        this.id = id;
+      }).catch((err) => {
+        console.error(err);
+      });
+    }, 2000);
+  }
 
   login(username: string, password: string): Promise<any> {
     const headers = new HttpHeaders({
@@ -28,7 +43,6 @@ export class AuthService {
   }
 
   signup(username: string, password: string): Promise<any> {
-    //make a signup request to the server
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -42,5 +56,13 @@ export class AuthService {
       comments: []
     };
     return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
+  }
+
+  logout() {
+    this.storage.remove('id').then(() => {
+      this.router.navigateByUrl('/login');
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 }

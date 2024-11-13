@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
     selector: 'app-login',
@@ -13,17 +14,22 @@ export class LoginPage implements OnInit {
     password: string = '';
     errorMessage: string = '';
 
-    constructor(private authService: AuthService, private router: Router) { }
+    constructor(
+        private auth: AuthService,
+        private storage: StorageService,
+        private router: Router
+    ) { }
 
     ngOnInit() { }
 
-    login(): void {
-        this.authService.login(this.username, this.password).then(() => {
-            this.router.navigate(['/home']);
-        }).catch((err) => {
-            // this.router.navigate(['/home']);
+    async login() {
+        try {
+            const response = await this.auth.login(this.username, this.password) as any;
+            await this.storage.set("id", response.id);
+            this.router.navigateByUrl('/home');
+        } catch (err) {
             console.error(err);
             this.errorMessage = 'Login failed. Please check your credentials and try again.';
-        });
+        }
     }
 }
