@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="signup-container">
     <h2>Sign up</h2>
-    <form>
+    <form (ngSubmit)="signup()">
       <div class="form-group">
         <label for="full_name">Full Name</label>
         <input type="text" id="full_name" name="full_name" placeholder="Enter full name" required />
@@ -12,13 +12,13 @@
       </div>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required />
+        <input type="text" id="username" [(ngModel)]="username"  name="username" placeholder="Enter username" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter pasword" required />
+        <input type="password" id="password" [(ngModel)]="password"  name="password" placeholder="Enter pasword" required />
       </div>
-      <button type="submit">Signup</button>
+      <button type="submit" [disabled]="!username || !password">Signup</button>
     </form>
     <p>Already have an account? <a href="/login">Log in here</a></p>
   </div>
