@@ -57,39 +57,6 @@
       <ion-card-content>
         {{ event.description }}
       </ion-card-content>
-
-      <!-- Event Posts and Comments -->
-      <div *ngFor="let post of event.posts" class="post">
-        <ion-card class="post-card">
-          <!-- Post Title -->
-          <ion-card-header>
-            <ion-card-title>{{ post.title }}</ion-card-title>
-          </ion-card-header>
-
-          <!-- Post Content -->
-          <ion-card-content>
-            <p class="post-content">{{ post.content }}</p> <!-- Added post-content class -->
-
-            <!-- Comments Section -->
-            <div *ngFor="let comment of post.comments" class="comment">
-              <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p>
-            </div>
-
-            <!-- Add Comment Section -->
-            <div class="add-comment-section">
-              <ion-input
-                [(ngModel)]="post.newComment"
-                placeholder="Add a comment"
-                class="comment-input"
-              ></ion-input>
-              <ion-button fill="clear" class="add-comment-button" (click)="addComment(post)">
-                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>
-                Add Comment
-              </ion-button>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div>
     </ion-card>
   </div>
 
