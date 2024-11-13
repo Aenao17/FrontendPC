@@ -24,8 +24,7 @@ export class LoginPage implements OnInit {
 
     async login() {
         try {
-            // const response = await this.auth.login(this.username, this.password) as any;
-            const response = {id: 123};
+            const response = await this.auth.login(this.username, this.password) as any;
             await this.storage.set("id", response.id);
             this.router.navigateByUrl('/home');
         } catch (err) {

@@ -5,20 +5,6 @@ import { Event } from '../interfaces/event';
 import { EventService } from '../services/event.service';
 import { AuthService } from '../services/auth.service';
 
-// Define an interface for the event structure
-// interface Event {
-//     title: string;
-//     image: string;
-//     date: string;
-//     description: string;
-//     posts: Array<{
-//         title: string;
-//         content: string;
-//         comments: Array<{ author: string; text: string }>;
-//         newComment: string;
-//     }>;
-// }
-
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
