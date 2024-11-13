@@ -1,17 +1,32 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
+import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { StorageService } from './storage.service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private apiUrl = `${environment.apiUrl}/users`; // Adjust API URL
+  private id: string = '';
 
-  private apiUrl = 'http://localhost:8080/api/users'; // Adjust API URL
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router
+  ) {
+    setTimeout(() => {
+      this.storage.get('id').then((id) => {
+        this.id = id;
+      }).catch((err) => {
+        console.error(err);
+      });
+    }, 2000);
+  }
 
-  constructor(private http: HttpClient) {}
-
-  login(username: string, password: string) {
+  login(username: string, password: string): Promise<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -26,10 +41,10 @@ export class AuthService {
       organizedEvents: [],
       comments: []
     }
-    return this.http.post(`${this.apiUrl}/login`, body);
+    return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
   }
 
-  signup(username: string, password: string, email: string, fullname: string): Observable<any> {
+  signup(username: string, password: string, email: string, fullname: string): Promise<any> {
     //make a signup request to the server
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -45,6 +60,14 @@ export class AuthService {
       organizedEvents: [],
       comments: []
     };
-    return this.http.post(`${this.apiUrl}/signup`, body );
+    return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
+  }
+
+  logout() {
+    this.storage.remove('id').then(() => {
+      this.router.navigateByUrl('/login');
+    }).catch((err) => {
+      console.error(err);
+    });
   }
 }
