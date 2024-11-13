@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 body {
     background-color: #f0f0f0;
-    font-family: "Arial", sans-serif;
+    font-family: 'Poppins', sans-serif; /* Folosește Poppins pentru tot textul */
     margin: 0;
     padding: 0;
     display: flex;
@@ -82,7 +83,7 @@ body::before {
         input {
             width: 100%;
             padding: 18px;
-            border: 1px solid #ddd;
+            border: 1px solid #f7f7f7;
             border-radius: 8px;
             background-color: #f7f7f7;
             font-size: 18px;
