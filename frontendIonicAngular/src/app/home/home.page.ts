@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
     public events: Event[] = [
         {
             title: 'Event 1',
-            image: 'assets/icon/images.png',
+            image: '',
             date: '2024-11-12',
             description: 'Description of Event 1',
             posts: [

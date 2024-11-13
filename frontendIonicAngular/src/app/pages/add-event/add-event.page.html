@@ -4,7 +4,7 @@
       <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" class="log-out-button" (click)="logout()">
+      <ion-button fill="clear" class="button-gradient" (click)="logout()">
         <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
       </ion-button>
     </ion-buttons>
@@ -29,10 +29,14 @@
           <ion-input type="date" name="date" required></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label position="floating">Location</ion-label>
+          <ion-input type="text" name="location" required></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating">Image URL</ion-label>
           <ion-input type="text" name="image" required></ion-input>
         </ion-item>
-        <ion-button type="submit" expand="block" class="add-event-button">
+        <ion-button type="submit" expand="block" class="button-gradient">
           <ion-icon name="add-circle-outline"></ion-icon> Add Event
         </ion-button>
       </form>

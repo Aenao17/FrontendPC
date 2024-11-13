@@ -1,4 +1,3 @@
-/* Transparent toolbar */
 .custom-toolbar {
   --background: transparent;
   display: flex;
@@ -52,31 +51,32 @@ ion-label {
   font-weight: bold;
 }
 
-/* Add Event Button */
-.add-event-button {
+/* Button styling for Add Event and Logout */
+.button-gradient {
   background: linear-gradient(45deg, #ff7043, #ffb74d);
-  color: #fff;
+  color: white;
   font-weight: bold;
-  padding: 12px;
+  border: none;
+  padding: 8px 15px;
   border-radius: 25px;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 1rem;
   transition: transform 0.3s, background 0.3s;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  outline: none;
 }
 
 /* Button hover effect */
-.add-event-button:hover {
+.button-gradient:hover {
   transform: scale(1.05);
   background: linear-gradient(45deg, #ff8a65, #ff7043);
 }
 
 /* Add focus outline for accessibility */
-.add-event-button:focus {
+.button-gradient:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.5);
 }
