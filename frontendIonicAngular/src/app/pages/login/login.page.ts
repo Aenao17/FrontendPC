@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  username: string = '';
-  password: string = '';
-  errorMessage: string = '';
+    username: string = '';
+    password: string = '';
+    errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) { }
 
-  ngOnInit() {}
+    ngOnInit() { }
 
-  login(): void {
-    this.authService.login(this.username, this.password).subscribe(
-      () => {
-        this.router.navigate(['/home']);
-      },
-      () => {
-        this.errorMessage = 'Login failed. Please check your credentials and try again.';
-      }
-    );
-  }
+    login(): void {
+        this.authService.login(this.username, this.password).then(() => {
+            this.router.navigate(['/home']);
+        }).catch((err) => {
+            // this.router.navigate(['/home']);
+            console.error(err);
+            this.errorMessage = 'Login failed. Please check your credentials and try again.';
+        });
+    }
 }

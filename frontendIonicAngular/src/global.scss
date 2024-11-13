@@ -17,8 +17,21 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  background-color: #ffffff;
-  color: #333333;
-  font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    font-family: "Arial", sans-serif;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    // overflow-x: hidden;
 }
