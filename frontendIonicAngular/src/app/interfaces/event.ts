@@ -3,7 +3,6 @@ import { Post } from "./post";
 import { User } from "./user";
 
 export interface Event extends DBObject {
-    id: number;
     name: string;
     description: string;
     date: Date;

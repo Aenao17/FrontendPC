@@ -9,7 +9,7 @@ import { StorageService } from './storage.service';
     providedIn: 'root',
 })
 export class AuthService {
-    private apiUrl = `${environment.apiUrl}/users`; // Adjust API URL
+    private apiUrl = `${environment.apiUrl}/users`;
     private id: string = '';
 
     constructor(
@@ -27,31 +27,35 @@ export class AuthService {
     }
 
     login(username: string, password: string): Promise<any> {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json'
+        // });
 
         const body = {
             id: 1,
             role: 'USER',
-            username: username,
-            password: password,
+            username,
+            password,
+            email: '',
+            fullname: '',
             organizedEvents: [],
             comments: []
         }
         return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
     }
 
-    signup(username: string, password: string): Promise<any> {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json'
-        });
+    signup(username: string, password: string, email: string, fullname: string): Promise<any> {
+        // const headers = new HttpHeaders({
+        //     'Content-Type': 'application/json'
+        // });
 
         const body = {
             id: 1,
             role: 'USER',
-            username: username,
-            password: password,
+            username,
+            password,
+            email,
+            fullname,
             organizedEvents: [],
             comments: []
         };

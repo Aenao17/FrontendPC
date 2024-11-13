@@ -3,6 +3,7 @@ import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces/event';
 import { EventService } from '../services/event.service';
+import { AuthService } from '../services/auth.service';
 
 // Define an interface for the event structure
 // interface Event {
@@ -64,6 +65,7 @@ export class HomePage implements OnInit {
     constructor(
         private eventService: EventService,
         private storage: StorageService,
+        private auth: AuthService,
         private router: Router,
     ) { }
 
@@ -86,6 +88,10 @@ export class HomePage implements OnInit {
         this.router.navigateByUrl(`/event/${event.id}`);
     }
 
+    addEvent(){
+        this.router.navigateByUrl('/add-event');
+    }
+
     addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
         if (post.newComment.trim()) {
             post.comments.push({
@@ -97,10 +103,6 @@ export class HomePage implements OnInit {
     }
 
     logout() {
-        this.storage.remove('id').then(() => {
-            this.router.navigateByUrl('/login');
-        }).catch((err) => {
-            console.error(err);
-        });
+        this.auth.logout();
     }
 }
