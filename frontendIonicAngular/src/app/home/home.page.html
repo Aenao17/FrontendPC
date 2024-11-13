@@ -59,23 +59,19 @@
       </ion-card-content>
 
       <!-- Event Posts and Comments -->
-      <div *ngFor="let post of event.posts" class="post">
+      <!-- <div *ngFor="let post of event.posts" class="post">
         <ion-card class="post-card">
-          <!-- Post Title -->
           <ion-card-header>
             <ion-card-title>{{ post.title }}</ion-card-title>
           </ion-card-header>
 
-          <!-- Post Content -->
           <ion-card-content>
-            <p class="post-content">{{ post.content }}</p> <!-- Added post-content class -->
+            <p class="post-content">{{ post.content }}</p>
 
-            <!-- Comments Section -->
             <div *ngFor="let comment of post.comments" class="comment">
               <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p>
             </div>
 
-            <!-- Add Comment Section -->
             <div class="add-comment-section">
               <ion-input
                 [(ngModel)]="post.newComment"
@@ -89,7 +85,7 @@
             </div>
           </ion-card-content>
         </ion-card>
-      </div>
+      </div> -->
     </ion-card>
   </div>
 
