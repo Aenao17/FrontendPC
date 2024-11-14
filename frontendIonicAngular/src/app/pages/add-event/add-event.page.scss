@@ -1,184 +1,223 @@
+/* General body styling */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 20px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px; /* Round the body corners */
+}
+
+/* Toolbar styling */
 .custom-toolbar {
-    --background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  border-radius: 8px; /* Round the toolbar corners */
+}
+
+.custom-toolbar ion-label {
+  padding: 8px 12px;
+  background-color: #ff7043;
+  color: transparent;
+  border-radius: 8px; /* Round the label corners */
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-toolbar ion-label:hover {
+  background-color: #e65c39;
+  transform: scale(1.05);
+}
+
+/* Content background styling */
+.content-bg {
+  background-color: #f0f0f0;
+  background-image: url('/assets/illustrations/Asset 7@4x.png');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px; /* Round the content background corners */
 }
 
 /* Logo styling */
 .header-logo {
-    height: 70px;
-    width: auto;
-    cursor: pointer;
+  height: 70px;
+  width: auto;
+  cursor: pointer;
+  border-radius: 8px; /* Round the logo corners */
 }
 
-/* Form Container Styling */
+/* Form styling */
+.form-group label {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  font-weight: normal;
+  padding: 0;
+  border: none;
+  border-radius: 8px; /* Round label corners */
+  box-shadow: none;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px; /* Round the textarea corners */
+  box-shadow: none;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+textarea:focus {
+  border-color: #888;
+}
+
+/* Form container */
 .form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  margin-top: 70px;
+  background-color: transparent;
+  border-radius: 8px; /* Round the form container corners */
 }
 
-/* Card for add event form */
+/* Card styling */
 .add-event-card {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+  width: 100%;
+  max-width: 450px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px; /* Round the card corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  margin: 20px;
+  backdrop-filter: blur(8px);
 }
 
-/* Styling for ion-items in the form */
+/* Calendar icon */
+ion-icon[name="calendar-outline"] {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #ff7043;
+  border-radius: 50%; /* Round the calendar icon */
+}
+
+/* Ion items */
 ion-item {
-    --background: transparent;
-    margin-bottom: 20px;
+  --background: #ffffff;
+  border-radius: 8px; /* Round the ion-item corners */
+  margin-bottom: 16px;
+  padding: 10px;
 }
 
-/* Input labels */
 ion-label {
-    color: #ff7043; /* Matching the color theme */
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 8px; /* Round the ion-label corners */
+  box-shadow: none;
 }
 
 /* Add Event Button */
 .add-event-button,
 .log-out-button {
-    background: linear-gradient(45deg, #ff7043, #ffb74d);
-    color: #fff;
-    font-weight: bold;
-    padding: 12px;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 1rem;
-    transition:
-        transform 0.3s,
-        background 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+  background: linear-gradient(45deg, #ff7043, #ffb74d);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 25px; /* Round the button corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  transition: transform 0.3s, background 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 
 .log-out-button {
-    width: 10rem !important;
+  width: 10rem !important;
 }
 
-/* Button hover effect */
 .add-event-button:hover {
-    transform: scale(1.05);
-    background: linear-gradient(45deg, #ff8a65, #ff7043);
-}
-
-/* Add focus outline for accessibility */
-.add-event-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.5);
+  transform: scale(1.05);
+  background: linear-gradient(45deg, #ff8a65, #ff7043);
 }
 
 /* Footer Wave Styling */
 .footer-wave-container {
-    position: relative;
-    width: 100%;
-    background-color: white;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  border-radius: 8px; /* Round the footer wave container */
 }
 
 .footer-wave-image {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .footer-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 30px 20px;
-    text-align: center;
-    color: #ff7043;
-    font-size: 18px;
-    z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 20px;
+  text-align: center;
+  color: #ff7043;
+  font-size: 18px;
+  z-index: 2;
+  border-radius: 8px; /* Round the footer info corners */
 }
 
-/* Center the form on the page */
+/* Center the form */
 .add-event-form {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 8px; /* Round the form corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Style each form item */
-ion-item {
-  --background: #ffffff;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+@keyframes movingBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* Label styling */
-ion-label {
-  font-weight: bold;
-  color: #333;
-}
-
-/* Input and textarea styling */
-ion-input,
-ion-textarea {
-  color: #333;
-}
-
-ion-input[type="date"] {
-  color: #333;
-}
-
-/* File input styling */
-input[type="file"] {
-  padding: 10px;
-  font-size: 14px;
-  color: #666;
-}
-
-/* Submit button styling */
-.add-event-button {
-  width: 100%;
-  background-color: #3880ff;
-  color: #fff;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.add-event-button ion-icon {
-  font-size: 20px;
-  color: #fff;
-}
-
-/* Hover effect for button */
-.add-event-button:hover {
-  background-color: #3171e0;
-  cursor: pointer;
-}
-
-.ion-datetime{
+/* Fix for ion-datetime */
+.ion-datetime {
   z-index: 999;
+  border-radius: 8px; /* Round the datetime input corners */
 }
