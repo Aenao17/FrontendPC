@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces/event';
 import { EventService } from '../services/event.service';
 import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
     selector: 'app-home',
@@ -53,6 +54,8 @@ export class HomePage implements OnInit {
         private storage: StorageService,
         private auth: AuthService,
         private router: Router,
+        private navCtrl: NavController,
+        private cdr: ChangeDetectorRef
     ) { }
 
     async ngOnInit() {
@@ -76,7 +79,9 @@ export class HomePage implements OnInit {
     }
 
     addEvent(){
-        this.router.navigateByUrl('/add-event');
+        // this.router.navigateByUrl('/add-event');
+        this.navCtrl.navigateForward("/add-event", { replaceUrl: true, skipLocationChange: false });
+        this.cdr.markForCheck();
     }
 
     addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
@@ -91,5 +96,10 @@ export class HomePage implements OnInit {
 
     logout() {
         this.auth.logout();
+    }
+
+    onLogoClick($event: MouseEvent) {
+        this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
+        this.cdr.detectChanges();
     }
 }

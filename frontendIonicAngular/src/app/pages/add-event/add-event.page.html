@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="custom-toolbar">
     <ion-title>
-      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" routerLink="/home">
+      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" (click)="onLogoClick($event)">
     </ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" class="log-out-button" (click)="logout()">

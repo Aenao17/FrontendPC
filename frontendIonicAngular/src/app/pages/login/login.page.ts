@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
     constructor(
         private auth: AuthService,
         private storage: StorageService,
-        private router: Router
+        private router: Router,
+        private navCtrl: NavController
     ) { }
 
     ngOnInit() {
@@ -28,7 +30,8 @@ export class LoginPage implements OnInit {
         try {
             const response = await this.auth.login(this.username, this.password) as any;
             await this.storage.set("id", response.id);
-            this.router.navigateByUrl('/home');
+            // this.router.navigateByUrl('/home');
+            this.navCtrl.navigateRoot("/home");
         } catch (err) {
             console.error(err);
             this.errorMessage = 'Login failed. Please check your credentials and try again.';

@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { EventService } from "../../services/event.service";
 import { Router } from "@angular/router";
-import { IonDatetime } from '@ionic/angular';
+import { IonDatetime, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-event',
@@ -20,7 +20,10 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
   @ViewChild('datePicker', { static: false }) datePicker!: IonDatetime; // Using the non-null assertion operator
 
-  constructor(private auth: AuthService, private eventService: EventService, private router: Router) { }
+  constructor(private auth: AuthService, private eventService: EventService, private router: Router,
+    private navCtrl: NavController,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit() {
     console.log('Initial values:', this.title, this.description, this.location, this.date);
@@ -29,6 +32,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
   // This lifecycle hook ensures that the `ViewChild` is available
   ngAfterViewInit() {
     // If needed, additional logic can be added here to handle the reference after the view is initialized
+    console.log("afterViewInit");
   }
 
   // Logout functionality
@@ -67,5 +71,9 @@ export class AddEventPage implements OnInit, AfterViewInit {
       console.error('Error adding event:', error);
       alert('An error occurred while adding the event. Please try again.');
     }
+  }
+  onLogoClick($event: MouseEvent) {
+    this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
+    this.cdr.detectChanges();
   }
 }

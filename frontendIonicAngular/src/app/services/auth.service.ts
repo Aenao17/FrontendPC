@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
+import { NavController } from '@ionic/angular';
 @Injectable({
     providedIn: 'root',
 })
@@ -15,7 +16,8 @@ export class AuthService {
     constructor(
         private http: HttpClient,
         private storage: StorageService,
-        private router: Router
+        private router: Router,
+        private navCtrl: NavController
     ) {
         setTimeout(() => {
             this.storage.get('id').then((id) => {
@@ -69,7 +71,8 @@ export class AuthService {
 
     logout() {
         this.storage.remove('id').then(() => {
-            this.router.navigateByUrl('/login');
+            // this.router.navigateByUrl('/login');
+            this.navCtrl.navigateRoot("/login");
         }).catch((err) => {
             console.error(err);
         });
