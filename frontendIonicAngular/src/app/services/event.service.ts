@@ -21,22 +21,23 @@ export class EventService {
         return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
     }
 
-    addEvent(title: string, description: string, location:string, date:Date, imageUrl: string): Promise<any> {
-
+    addEvent(title: string, description: string, location:string, date: number, imageUrl: string): Promise<any> {
+      console.log(date);
+      // let aux_date = dat
       const body = {
         id:1,
         name: title,
         description: description,
-        date:date.toISOString(),
+        date:date,
         participantCount: 0,
         location: location,
         image: imageUrl,
         organizer:{
           id: this.authService.getId(),
-          username: 'gabi',
-          password: 'gabi',
-          fullname: 'gabi',
-          email: 'gabi@gabi.com',
+          username: 'calin',
+          password: 'calin',
+          fullname: 'calin',
+          email: 'navadarucalin@yahoo.com',
         },
         posts:[]
       };

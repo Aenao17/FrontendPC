@@ -14,6 +14,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
   title: string = '';
   description: string = '';
   date: Date = new Date();
+  dateTimestamp: number = 0;
   location: string = '';
   formattedDate: string = '';
   showDatePicker: boolean = false; // Flag to control visibility of datetime picker
@@ -47,8 +48,12 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
   // Handle date change
   onDateChange(event: any): void {
-    this.date = event.detail.value;
+    this.date = new Date(event.detail.value);
+    console.log(typeof(this.date));
+    console.log("DAta selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
+    this.dateTimestamp = this.date.getTime() / 1000; 
+    console.log("TIme starmp", this.dateTimestamp);
   }
 
   // Add event to the server
@@ -61,7 +66,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
     try {
       // Call the event service to add the event without image
-      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.date, '');
+      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, '');
       console.log('Event added successfully:', response);
 
       // Optionally, redirect after success
@@ -69,7 +74,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
     } catch (error) {
       console.error('Error adding event:', error);
-      alert('An error occurred while adding the event. Please try again.');
+      // alert('An error occurred while adding the event. Please try again.');
     }
   }
   onLogoClick($event: MouseEvent) {
