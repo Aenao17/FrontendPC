@@ -6,31 +6,31 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <div *ngFor="let post of event!.posts" class="post">
-        <ion-card class="post-card">
-          <ion-card-header>
-            <ion-card-title>{{ post.name }}</ion-card-title>
-          </ion-card-header>
+<!--    <div *ngFor="let post of event!.posts" class="post">-->
+<!--        <ion-card class="post-card">-->
+<!--          <ion-card-header>-->
+<!--            <ion-card-title>{{ post.name }}</ion-card-title>-->
+<!--          </ion-card-header>-->
 
-          <ion-card-content>
-            <p class="post-content">{{ post.description }}</p>
+<!--          <ion-card-content>-->
+<!--            <p class="post-content">{{ post.description }}</p>-->
 
-            <!-- <div *ngFor="let comment of post.comments" class="comment"> -->
-              <!-- <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p> -->
-            <!-- </div> -->
+<!--            &lt;!&ndash; <div *ngFor="let comment of post.comments" class="comment"> &ndash;&gt;-->
+<!--              &lt;!&ndash; <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p> &ndash;&gt;-->
+<!--            &lt;!&ndash; </div> &ndash;&gt;-->
 
-            <!-- <div class="add-comment-section">
-              <ion-input
-                [(ngModel)]="post.newComment"
-                placeholder="Add a comment"
-                class="comment-input"
-              ></ion-input>
-              <ion-button fill="clear" class="add-comment-button" (click)="addComment(post)">
-                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>
-                Add Comment
-              </ion-button>
-            </div> -->
-          </ion-card-content>
-        </ion-card>
-    </div>
+<!--            &lt;!&ndash; <div class="add-comment-section">-->
+<!--              <ion-input-->
+<!--                [(ngModel)]="post.newComment"-->
+<!--                placeholder="Add a comment"-->
+<!--                class="comment-input"-->
+<!--              ></ion-input>-->
+<!--              <ion-button fill="clear" class="add-comment-button" (click)="addComment(post)">-->
+<!--                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>-->
+<!--                Add Comment-->
+<!--              </ion-button>-->
+<!--            </div> &ndash;&gt;-->
+<!--          </ion-card-content>-->
+<!--        </ion-card>-->
+<!--    </div>-->
 </ion-content>

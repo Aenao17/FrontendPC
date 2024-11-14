@@ -111,3 +111,74 @@ ion-label {
     font-size: 18px;
     z-index: 2;
 }
+
+/* Center the form on the page */
+.add-event-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style each form item */
+ion-item {
+  --background: #ffffff;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Label styling */
+ion-label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Input and textarea styling */
+ion-input,
+ion-textarea {
+  color: #333;
+}
+
+ion-input[type="date"] {
+  color: #333;
+}
+
+/* File input styling */
+input[type="file"] {
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Submit button styling */
+.add-event-button {
+  width: 100%;
+  background-color: #3880ff;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.add-event-button ion-icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+/* Hover effect for button */
+.add-event-button:hover {
+  background-color: #3171e0;
+  cursor: pointer;
+}
+
+.ion-datetime{
+  z-index: 999;
+}

@@ -71,6 +71,7 @@ export class HomePage implements OnInit {
 
     // Typing event as 'Event' to fix implicit 'any' type
     viewEvent(event: Event) {
+      console.log('Viewing event:', event);
         this.router.navigateByUrl(`/event/${event.id}`);
     }
 

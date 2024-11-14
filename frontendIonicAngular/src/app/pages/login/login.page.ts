@@ -20,7 +20,9 @@ export class LoginPage implements OnInit {
         private router: Router
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+      console.log(this.username);
+    }
 
     async login() {
         try {

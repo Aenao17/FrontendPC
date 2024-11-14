@@ -26,6 +26,10 @@ export class AuthService {
         }, 2000);
     }
 
+    getId(): string {
+      return this.id;
+    }
+
     login(username: string, password: string): Promise<any> {
         // const headers = new HttpHeaders({
         //     'Content-Type': 'application/json'
@@ -61,6 +65,7 @@ export class AuthService {
         };
         return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
     }
+
 
     logout() {
         this.storage.remove('id').then(() => {

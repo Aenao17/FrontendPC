@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
-    public event: Event | null = null;
+    public event: any
 
     constructor(
         private eventService: EventService,
@@ -19,7 +19,8 @@ export class EventPage implements OnInit {
     async ngOnInit() {
         const id = this.activatedRoute.snapshot.params['id'] as any;
         try {
-            this.event = await this.eventService.getEvent(id) as Event;
+            this.event = await this.eventService.getEvent(id);
+            console.log(this.event);
         } catch (err) {
             console.error(err);
         }
