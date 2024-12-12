@@ -35,3 +35,18 @@
 .post-card:hover {
     background-color: #ffb74d;
 }
+
+.event-image{
+  height: 20%;
+  width: 20%;
+}
+
+.event-card {
+    background-color: antiquewhite;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    align-content: center;
+    margin: auto;
+    display: flex;
+}

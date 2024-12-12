@@ -17,6 +17,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
   dateTimestamp: number = 0;
   location: string = '';
   formattedDate: string = '';
+  imageUrl: string = '';
   showDatePicker: boolean = false; // Flag to control visibility of datetime picker
 
   @ViewChild('datePicker', { static: false }) datePicker!: IonDatetime; // Using the non-null assertion operator
@@ -52,7 +53,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
     console.log(typeof(this.date));
     console.log("DAta selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
-    this.dateTimestamp = this.date.getTime() / 1000; 
+    this.dateTimestamp = this.date.getTime() / 1000;
     console.log("TIme starmp", this.dateTimestamp);
   }
 
@@ -66,7 +67,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
     try {
       // Call the event service to add the event without image
-      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, '');
+      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, this.imageUrl);
       console.log('Event added successfully:', response);
 
       // Optionally, redirect after success

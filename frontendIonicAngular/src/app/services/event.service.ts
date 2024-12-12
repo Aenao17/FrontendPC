@@ -16,8 +16,10 @@ export class EventService {
         return lastValueFrom(this.http.get(this.apiUrl));
     }
 
-    public getEvent(id: string) {
+    public getEvent(id: any) {
         console.log(id);
+        if(typeof id == 'string') {
+        id = parseInt(id);}
         return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
     }
 
@@ -33,9 +35,9 @@ export class EventService {
         location: location,
         image: imageUrl,
         organizer:{
-          id: this.authService.getId(),
-          username: 'calin',
-          password: 'calin',
+          id: 2,
+          username: 'admin',
+          password: 'admin',
           fullname: 'calin',
           email: 'navadarucalin@yahoo.com',
         },
@@ -43,4 +45,5 @@ export class EventService {
       };
       return lastValueFrom(this.http.post(`${this.apiUrl}`, body));
     }
+
 }

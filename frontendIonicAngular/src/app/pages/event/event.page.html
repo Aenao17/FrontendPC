@@ -1,36 +1,56 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-title *ngIf="event">{{ event.name }}</ion-title>
-        <ion-title *ngIf="!event">Waiting for event...</ion-title>
-    </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-<!--    <div *ngFor="let post of event!.posts" class="post">-->
-<!--        <ion-card class="post-card">-->
-<!--          <ion-card-header>-->
-<!--            <ion-card-title>{{ post.name }}</ion-card-title>-->
-<!--          </ion-card-header>-->
+    <ion-card *ngIf="event" class="event-card">
+        <ion-card-header>
+            <ion-card-title>{{ event.name }}</ion-card-title>
+            <ion-card-subtitle>{{ event.date | date }}</ion-card-subtitle>
+        </ion-card-header>
 
-<!--          <ion-card-content>-->
-<!--            <p class="post-content">{{ post.description }}</p>-->
+        <ion-img [src]="event.image" class="event-image"></ion-img>
 
-<!--            &lt;!&ndash; <div *ngFor="let comment of post.comments" class="comment"> &ndash;&gt;-->
-<!--              &lt;!&ndash; <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p> &ndash;&gt;-->
-<!--            &lt;!&ndash; </div> &ndash;&gt;-->
+        <ion-card-content>
+            <p>{{ event.description }}</p>
+            <p>Location: {{ event.location }}</p>
+        </ion-card-content>
 
-<!--            &lt;!&ndash; <div class="add-comment-section">-->
-<!--              <ion-input-->
-<!--                [(ngModel)]="post.newComment"-->
-<!--                placeholder="Add a comment"-->
-<!--                class="comment-input"-->
-<!--              ></ion-input>-->
-<!--              <ion-button fill="clear" class="add-comment-button" (click)="addComment(post)">-->
-<!--                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>-->
-<!--                Add Comment-->
-<!--              </ion-button>-->
-<!--            </div> &ndash;&gt;-->
-<!--          </ion-card-content>-->
-<!--        </ion-card>-->
-<!--    </div>-->
+        <ion-button fill="clear" class="join-event-button">
+            <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon> JOIN
+        </ion-button>
+    </ion-card>
+  <!-- make a post -->
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Make a post</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-item>
+
+                <ion-textarea placeholder="Write something..." [(ngModel)]="postContent"></ion-textarea>
+            </ion-item>
+
+            <ion-button fill="clear" class="post-button" (click)="makePost()">
+                <ion-icon name="add-circle-outline" slot="start"></ion-icon> Post
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+  <!-- Posts -->
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Posts</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let post of posts">
+
+                    <ion-label>
+                        <h2>{{ post.user.name }}</h2>
+                        <p>{{ post.content }}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
