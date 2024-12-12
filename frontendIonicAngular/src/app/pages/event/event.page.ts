@@ -41,8 +41,7 @@ export class EventPage implements OnInit {
     this.posts.push(post);
     setTimeout(() => {
       this.stat1 = "Gata";
-      this.stat2 = "Gata";
-    }, 10000);
+    }, 20000);
   }
 
 
