@@ -71,7 +71,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
       console.log('Event added successfully:', response);
 
       // Optionally, redirect after success
-      this.router.navigate(['/events']);  // Example redirection
+      this.router.navigate(['/home'], { replaceUrl: true, skipLocationChange: false });  // Example redirection
 
     } catch (error) {
       console.error('Error adding event:', error);
