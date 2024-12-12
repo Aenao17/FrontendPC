@@ -19,6 +19,7 @@ export class EventPage implements OnInit {
     async ngOnInit() {
         const id = this.activatedRoute.snapshot.params['id'] as any;
         try {
+            console.log("dsdasdadsa" ,id);
             this.event = await this.eventService.getEvent(id);
             console.log(this.event);
         } catch (err) {

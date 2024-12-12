@@ -28,12 +28,12 @@ export class EventService {
         id:1,
         name: title,
         description: description,
-        date:date,
+        date: date,
         participantCount: 0,
         location: location,
         image: imageUrl,
         organizer:{
-          id: this.authService.getId(),
+          id: 1,
           username: 'calin',
           password: 'calin',
           fullname: 'calin',
@@ -41,6 +41,6 @@ export class EventService {
         },
         posts:[]
       };
-      return lastValueFrom(this.http.post(`${this.apiUrl}`, body));
+      return lastValueFrom<string>(this.http.post<string>(`${this.apiUrl}`, body));
     }
 }

@@ -52,7 +52,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
     console.log(typeof(this.date));
     console.log("DAta selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
-    this.dateTimestamp = this.date.getTime() / 1000; 
+    this.dateTimestamp = this.date.getTime(); 
     console.log("TIme starmp", this.dateTimestamp);
   }
 
@@ -67,10 +67,14 @@ export class AddEventPage implements OnInit, AfterViewInit {
     try {
       // Call the event service to add the event without image
       const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, '');
-      console.log('Event added successfully:', response);
-
+      console.log('Event added successfully:', response.id);
+    
+      this.navCtrl.navigateForward("/event", { replaceUrl: true, skipLocationChange: false , state: {
+        id: response.id
+      }});
+      this.cdr.detectChanges();
       // Optionally, redirect after success
-      this.router.navigate(['/events']);  // Example redirection
+      // this.router.navigate(['/events']);  // Example redirection
 
     } catch (error) {
       console.error('Error adding event:', error);
