@@ -47,4 +47,8 @@ export class EventPage implements OnInit {
         this.posts.push(post);
         console.log(this.posts);
     }
+
+    handleClick($event: MouseEvent) {
+        alert("Task-ul ti-a fost asignat!");
+    }
 }

@@ -1,5 +1,3 @@
-
-
 <ion-content [fullscreen]="true">
     <ion-card *ngIf="event" class="event-card">
         <ion-card-header>
@@ -18,7 +16,7 @@
             <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon> JOIN
         </ion-button>
     </ion-card>
-  <!-- make a post -->
+    <!-- make a post -->
     <ion-card>
         <ion-card-header>
             <ion-card-title>Make a post</ion-card-title>
@@ -35,8 +33,8 @@
             </ion-button>
         </ion-card-content>
     </ion-card>
-  <!-- Posts -->
-    <ion-card>
+    <!-- Posts -->
+    <ion-card>  
         <ion-card-header>
             <ion-card-title>Posts</ion-card-title>
         </ion-card-header>
@@ -53,4 +51,28 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
+    <ion-list>
+        <ion-item>
+            <ion-card>
+                <ion-card-title>Gasire Sponsori</ion-card-title>
+                <ion-card-content>
+                    <h3>Cautam sponsori pentru eveniment</h3>
+                    <h3>Status: Activa</h3>
+                    <h3>Deadline: 12.12.2024</h3>
+                </ion-card-content>
+            </ion-card>
+            <ion-button (click)="handleClick($event)">Take</ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-card>
+                <ion-card-title>Gasire Locatie</ion-card-title>
+                <ion-card-content>
+                    <h3>Cautam o locatie pentru eveniment</h3>
+                    <h3>Status: Activa</h3>
+                    <h3>Deadline: 13.12.2024</h3>
+                </ion-card-content>
+            </ion-card>
+            <ion-button (click)="handleClick($event)">Take</ion-button>
+        </ion-item>
+    </ion-list>
 </ion-content>
