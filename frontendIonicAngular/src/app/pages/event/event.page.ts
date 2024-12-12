@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
-import { Event } from '../../interfaces/event';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,6 +11,8 @@ export class EventPage implements OnInit {
     public event: any
     public postContent: string = '';
     public posts : any =[];
+    public stat1: string = "Activ";
+    public stat2: any = "Activ";
 
     constructor(
         private eventService: EventService,
@@ -37,6 +38,10 @@ export class EventPage implements OnInit {
         let content = 'WOOOW';
         let post= {content, user};
         this.posts.push(post);
+        setTimeout(() => {
+            this.stat1 = "Gata";
+            this.stat2 = "Gata";
+        }, 10000);
     }
 
 
