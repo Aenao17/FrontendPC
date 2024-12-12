@@ -53,7 +53,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
     console.log(typeof(this.date));
     console.log("DAta selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
-    this.dateTimestamp = this.date.getTime() / 1000;
+    this.dateTimestamp = this.date.getTime();
     console.log("TIme starmp", this.dateTimestamp);
   }
 
