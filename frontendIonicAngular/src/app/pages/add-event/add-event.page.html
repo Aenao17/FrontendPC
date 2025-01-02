@@ -1,11 +1,16 @@
 <ion-header>
   <ion-toolbar class="custom-toolbar">
     <ion-title>
-      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" (click)="onLogoClick($event)">
+      <img
+        src="assets/illustrations/Asset 2@4x.png"
+        alt="Logo"
+        class="header-logo"
+        (click)="onLogoClick($event)"
+      />
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear" class="log-out-button" (click)="logout()">
-        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
+      <ion-button fill="clear" class="circular-log-out-button" (click)="logout()">
+        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -15,42 +20,72 @@
   <div class="form-container">
     <ion-card class="add-event-card">
       <form (ngSubmit)="addEvent()" class="add-event-form">
+        <!-- Title Input -->
         <ion-item>
           <ion-label position="floating">Title</ion-label>
-          <ion-input type="text" name="title" [(ngModel)]="title" required></ion-input>
+          <ion-input
+            type="text"
+            name="title"
+            [(ngModel)]="title"
+            required
+          ></ion-input>
         </ion-item>
+
+        <!-- Description Input -->
         <ion-item>
           <ion-label position="floating">Description</ion-label>
-          <ion-textarea name="description" [(ngModel)]="description" required></ion-textarea>
+          <ion-textarea
+            name="description"
+            [(ngModel)]="description"
+            required
+          ></ion-textarea>
         </ion-item>
+
+        <!-- Location Input -->
         <ion-item>
           <ion-label position="floating">Location</ion-label>
-          <ion-textarea name="location" [(ngModel)]="location" required></ion-textarea>
+          <ion-textarea
+            name="location"
+            [(ngModel)]="location"
+            required
+          ></ion-textarea>
         </ion-item>
+
+        <!-- Date Input -->
         <ion-item>
           <ion-label position="floating">Date</ion-label>
-          <div style="display: flex; align-items: center;">
+          <div class="date-picker-container">
             <ion-input
-              placeholder="Select Date"
               readonly
               [value]="formattedDate"
-              (click)="openDatePicker()">
-            </ion-input>
-            <ion-icon name="calendar-outline" size="large" (click)="openDatePicker()"></ion-icon>
+              (click)="openDatePicker()"
+            ></ion-input>
+            <ion-icon
+              name="calendar-outline"
+              size="large"
+              (click)="openDatePicker()"
+            ></ion-icon>
           </div>
 
-          <!-- Toggle visibility of ion-datetime based on showDatePicker flag -->
+          <!-- Date Picker -->
           <ion-datetime
             *ngIf="showDatePicker"
             #datePicker
             display-format="MMM D, YYYY HH:mm"
             (ionChange)="onDateChange($event)"
-            presentation="date">
-          </ion-datetime>
+            presentation="date"
+          ></ion-datetime>
         </ion-item>
 
-        <ion-button fill="clear" type="submit" expand="block" class="add-event-button">
-          <ion-icon name="add-circle-outline"></ion-icon> Add Event
+        <!-- Submit Button -->
+        <ion-button
+          fill="clear"
+          type="submit"
+          expand="block"
+          class="add-event-button"
+        >
+          <ion-icon name="add-circle-outline"></ion-icon>
+          Add Event
         </ion-button>
       </form>
     </ion-card>

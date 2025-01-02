@@ -6,75 +6,123 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
 import { NavController } from '@ionic/angular';
+
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class AuthService {
-    private apiUrl = `${environment.apiUrl}/users`;
-    private id: string = '';
+  private apiUrl = `${environment.apiUrl}/users`;
+  private id: string = '';
+  private username: string = '';
+  private fullname: string = '';
+  private email: string = '';
 
-    constructor(
-        private http: HttpClient,
-        private storage: StorageService,
-        private router: Router,
-        private navCtrl: NavController
-    ) {
-        setTimeout(() => {
-            this.storage.get('id').then((id) => {
-                this.id = id;
-            }).catch((err) => {
-                console.error(err);
-            });
-        }, 2000);
-    }
+  constructor(
+    private http: HttpClient,
+    private storage: StorageService,
+    private router: Router,
+    private navCtrl: NavController
+  ) {
+    // Load user info from storage upon initialization
+    setTimeout(() => {
+      this.storage.get('id').then((id) => {
+        this.id = id;
+      }).catch((err) => {
+        console.error(err);
+      });
 
-    getId(): string {
-      return this.id;
-    }
+      // Assuming you store username, fullname, and email in storage as well
+      this.storage.get('username').then((username) => {
+        this.username = username;
+      }).catch((err) => {
+        console.error(err);
+      });
 
-    login(username: string, password: string): Promise<any> {
-        // const headers = new HttpHeaders({
-        //     'Content-Type': 'application/json'
-        // });
+      this.storage.get('fullname').then((fullname) => {
+        this.fullname = fullname;
+      }).catch((err) => {
+        console.error(err);
+      });
 
-        const body = {
-            id: 1,
-            role: 'USER',
-            username,
-            password,
-            email: '',
-            fullname: '',
-            organizedEvents: [],
-            comments: []
-        }
-        return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
-    }
+      this.storage.get('email').then((email) => {
+        this.email = email;
+      }).catch((err) => {
+        console.error(err);
+      });
+    }, 2000);
+  }
 
-    signup(username: string, password: string, email: string, fullname: string): Promise<any> {
-        // const headers = new HttpHeaders({
-        //     'Content-Type': 'application/json'
-        // });
+  getId(): string {
+    return this.id;
+  }
 
-        const body = {
-            id: 1,
-            role: 'USER',
-            username,
-            password,
-            email,
-            fullname,
-            organizedEvents: [],
-            comments: []
-        };
-        return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body));
-    }
+  getUsername(): string {
+    return this.username;
+  }
 
+  getFullName(): string {
+    return this.fullname;
+  }
 
-    logout() {
-        this.storage.remove('id').then(() => {
-            // this.router.navigateByUrl('/login');
-            this.navCtrl.navigateRoot("/login");
-        }).catch((err) => {
-            console.error(err);
-        });
-    }
+  getEmail(): string {
+    return this.email;
+  }
+
+  // Login method
+  login(username: string, password: string): Promise<any> {
+    const body = {
+      id: 1,
+      role: 'USER',
+      username,
+      password,
+      email: '',
+      fullname: '',
+      organizedEvents: [],
+      comments: []
+    };
+
+    return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
+  }
+
+  // Signup method
+  signup(username: string, password: string, email: string, fullname: string): Promise<any> {
+    const body = {
+      id: 1,
+      role: 'USER',
+      username,
+      password,
+      email,
+      fullname,
+      organizedEvents: [],
+      comments: []
+    };
+
+    // After successful signup, store user data in storage
+    return lastValueFrom(this.http.post(`${this.apiUrl}/signup`, body)).then((response: any) => {
+      this.id = response.id;
+      this.username = response.username;
+      this.fullname = response.fullname;
+      this.email = response.email;
+
+      // Store values in local storage for persistence
+      this.storage.set('id', this.id);
+      this.storage.set('username', this.username);
+      this.storage.set('fullname', this.fullname);
+      this.storage.set('email', this.email);
+
+      return response;
+    });
+  }
+
+  // Logout method
+  logout() {
+      this.storage.remove('id').then(() => {
+      this.storage.remove('username');
+      this.storage.remove('fullname');
+      this.storage.remove('email');
+      this.navCtrl.navigateRoot("/login");
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
 }

@@ -1,3 +1,3 @@
 export interface DBObject {
-    id: number;
+    id: string;
 };

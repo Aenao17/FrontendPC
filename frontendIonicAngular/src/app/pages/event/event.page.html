@@ -1,36 +1,65 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-title *ngIf="event">{{ event.name }}</ion-title>
-        <ion-title *ngIf="!event">Waiting for event...</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" (click)="onLogoClick($event)">
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="log-out-button" (click)="logout()">
+        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-<!--    <div *ngFor="let post of event!.posts" class="post">-->
-<!--        <ion-card class="post-card">-->
-<!--          <ion-card-header>-->
-<!--            <ion-card-title>{{ post.name }}</ion-card-title>-->
-<!--          </ion-card-header>-->
+<ion-content [fullscreen]="true" class="instagram-interface">
+  <!-- Event Description Section -->
+  <div *ngIf="event" class="event-description">
+    <ion-card>
+      <img [src]="event.image" alt="Event Image" />
+      <ion-card-content>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p><strong>Location:</strong> {{ event.location }}</p>
+        <p><strong>Date:</strong> {{ event.date | date: 'medium' }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 
-<!--          <ion-card-content>-->
-<!--            <p class="post-content">{{ post.description }}</p>-->
+  <!-- Posts Section -->
+  <div class="post-container">
+    <div *ngFor="let post of event.posts" class="post-card">
+      <img [src]="post.image" alt="Post Image" class="post-image" />
+      <div class="post-content">
+        <h3 class="post-title">{{ post.name }}</h3>
+        <p class="post-description">{{ post.description }}</p>
 
-<!--            &lt;!&ndash; <div *ngFor="let comment of post.comments" class="comment"> &ndash;&gt;-->
-<!--              &lt;!&ndash; <p><strong>{{ comment.author }}:</strong> {{ comment.text }}</p> &ndash;&gt;-->
-<!--            &lt;!&ndash; </div> &ndash;&gt;-->
+        <!-- Add Comment Section -->
+        <div class="add-comment-section">
+          <ion-item lines="none">
+            <ion-input
+              [(ngModel)]="post.newComment"
+              placeholder="Write a comment..."
+              class="comment-input"
+            ></ion-input>
+            <ion-button
+              fill="clear"
+              color="primary"
+              class="add-comment-button"
+            >
+              <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </div>
 
-<!--            &lt;!&ndash; <div class="add-comment-section">-->
-<!--              <ion-input-->
-<!--                [(ngModel)]="post.newComment"-->
-<!--                placeholder="Add a comment"-->
-<!--                class="comment-input"-->
-<!--              ></ion-input>-->
-<!--              <ion-button fill="clear" class="add-comment-button" (click)="addComment(post)">-->
-<!--                <ion-icon name="chatbubble-outline" class="button-icon"></ion-icon>-->
-<!--                Add Comment-->
-<!--              </ion-button>-->
-<!--            </div> &ndash;&gt;-->
-<!--          </ion-card-content>-->
-<!--        </ion-card>-->
-<!--    </div>-->
+        <!-- Comments Section -->
+        <div *ngIf="post.comments.length > 0" class="comments-section">
+          <div *ngFor="let comment of post.comments" class="comment">
+            <p>
+              <strong>{{ comment.user.fullname }}</strong>: {{ comment.message }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

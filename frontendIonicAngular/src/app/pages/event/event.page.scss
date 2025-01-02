@@ -1,37 +1,182 @@
-.post-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    image-rendering: optimizeQuality;
-}
-/* New post container with scroll effect */
-.post-container {
-    background-color: #ffffff;
-    max-height: 300px;
-    overflow-y: auto;
-    padding-right: 10px;
-    transition: max-height 0.3s ease-in-out;
+/* General Page Styling */
+.instagram-interface {
+  background: linear-gradient(45deg, #ffecd2, #fcb69f);
+  padding-bottom: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
-.post-content {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: white;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow-wrap: break-word;
+/* Event Description Card */
+.event-description ion-card {
+  margin: 20px auto;
+  max-width: 600px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Toolbar Styling */
+.custom-toolbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 18px 35px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styling */
+.header-logo {
+  height: 50px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.header-logo:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Circular Logout Button */
+.circular-log-out-button {
+  background: linear-gradient(135deg, #ff7043, #ffb74d);
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-left: auto; /* Align to the end of the toolbar */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  border: none;
+  outline: none;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
+}
+
+.circular-log-out-button:hover {
+  background: linear-gradient(135deg, #ff8a65, #ff7043);
+  transform: scale(1.1);
+  box-shadow: inset 0 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Post Layout */
+.post-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
 }
 
 .post-card {
-    background-color: antiquewhite;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .post-card:hover {
-    background-color: #ffb74d;
+  transform: scale(1.02);
+  box-shadow: 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.post-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Post Content Styling */
+.post-content {
+  padding: 15px;
+  background: white;
+  color: #333;
+}
+
+.post-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.post-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Comments Section */
+.comment-section {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px solid #eaeaea;
+}
+
+.comment {
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* Comment Input */
+.comment-input {
+  width: calc(100% - 50px);
+  margin-right: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.comment-input:focus {
+  border-bottom: 1px solid #333;
+}
+
+.add-comment-button {
+  color: #ff9800;
+}
+
+/* Animations for Toolbar Elements */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-logo {
+  animation-delay: 0.2s;
+}
+
+.log-out-button {
+  background: linear-gradient(135deg, #ff7043, #ffb74d);
+  color: white;
+  font-weight: bold;
+  border-radius: 70%;
+  width: 80px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 80px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  border: none; /* Elimină orice bordură */
+  outline: none; /* Elimină outline-ul */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
 }
