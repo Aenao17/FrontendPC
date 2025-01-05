@@ -1,0 +1,150 @@
+/* General Content Background */
+.content-bg {
+  background-color: #f0f4f8; /* Light blue background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Header Styling */
+.custom-toolbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #6200ea; /* Purple text */
+  padding: 18px 35px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+}
+
+/* Logo Styling */
+.header-logo {
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.header-logo:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px); /* Full height minus header */
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+  flex-direction: column;
+}
+
+/* Card Styling */
+.add-post-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 100px;
+  transition: box-shadow 0.3s ease;
+}
+
+.add-post-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.add-post-form ion-item {
+  margin-bottom: 16px;
+}
+
+/* Form Labels and Inputs */
+ion-label {
+  font-size: 14px;
+  color: #666; /* Subtle gray */
+}
+
+ion-input,
+ion-textarea {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-size: 16px;
+}
+
+/* Submit Button */
+.add-post-button {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #ff6f61, #ffb74d);
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border-radius: 50px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  text-transform: uppercase;
+}
+
+.add-post-button:hover {
+  background: linear-gradient(135deg, #ff8a65, #ff7043);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Circular Log Out Button */
+.circular-log-out-button {
+  background: linear-gradient(135deg, #ff7043, #ffb74d);
+  color: white;
+  font-weight: bold;
+  border-radius: 70%;
+  width: 80px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 80px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  border: none;
+  outline: none;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circular-log-out-button:hover {
+  background: linear-gradient(135deg, #ff8a65 0%, #ff7043 50%);
+  transform: scale(1.1);
+  box-shadow: inset 0 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Date Picker Styling */
+.date-picker-container {
+  margin-left: 120px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.date-picker-container ion-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #ff7043;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.date-picker-container ion-icon:hover {
+  transform: scale(1.25);
+  color: #ff7043;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .add-post-card {
+    margin: 0 16px;
+  }
+}

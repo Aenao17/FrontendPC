@@ -13,38 +13,6 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
     public events: Event[] = [
-        // {
-        //     name: 'Event 1',
-        //     image: 'assets/icon/images.png',
-        //     date: new Date('2024-11-12'),
-        //     description: 'Description of Event 1',
-        //     posts: [
-        //         {
-        //             name: 'Post 1',
-        //             description: 'Content for post 1',
-        //             comments: [
-        //                 { id: 1, user: { username: 'User1' }, message: 'Great post!', post: { id: 1 } },
-        //                 { id: 1, user: { username: 'User2' }, message: 'Thanks for sharing!', post: { id: 1 } },
-        //             ],
-        //             newComment: '',
-        //         },
-        //         {
-        //             name: 'Post 2',
-        //             description: 'Content for post 2',
-        //             comments: [
-        //                 { id: 1, user: { username: 'User3' }, message: 'Interesting thoughts.' },
-        //             ],
-        //             newComment: '',
-        //         },
-        //     ],
-        // },
-        // {
-        //     name: 'Event 2',
-        //     image: 'event2.jpg',
-        //     date: new Date('2024-11-14'),
-        //     description: 'Description of Event 2',
-        //     posts: [],
-        // },
     ];
 
     public currentUser = 'John Doe';
@@ -106,4 +74,8 @@ export class HomePage implements OnInit {
         this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
         this.cdr.detectChanges();
     }
+
+  goToAddPost() {
+    this.router.navigate(['/post']);
+  }
 }

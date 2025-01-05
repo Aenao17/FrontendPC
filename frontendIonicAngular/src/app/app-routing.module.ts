@@ -38,7 +38,11 @@ const routes: Routes = [
         path: 'add-event',
         loadChildren: () => import('./pages/add-event/add-event.module').then( m => m.AddEventPageModule),
         canActivate: [AuthGuard]
-    },
+    },  {
+    path: 'post',
+    loadChildren: () => import('./pages/post/post.module').then( m => m.PostPageModule)
+  },
+
 ];
 
 @NgModule({
