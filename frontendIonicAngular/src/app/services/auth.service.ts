@@ -71,14 +71,10 @@ export class AuthService {
 	// Login method
 	login(username: string, password: string): Promise<any> {
 		const body = {
-			id: 1,
-			role: 'USER',
 			username,
 			password,
 			email: '',
-			fullname: '',
-			organizedEvents: [],
-			comments: []
+			fullname: ''
 		};
 
 		return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
@@ -87,14 +83,10 @@ export class AuthService {
 	// Signup method
 	signup(username: string, password: string, email: string, fullname: string): Promise<any> {
 		const body = {
-			id: 1,
-			role: 'USER',
-			username,
-			password,
-			email,
-			fullname,
-			organizedEvents: [],
-			comments: []
+			username: username,
+			password: password,
+			email: email,
+			fullname: fullname
 		};
 
 		// After successful signup, store user data in storage
