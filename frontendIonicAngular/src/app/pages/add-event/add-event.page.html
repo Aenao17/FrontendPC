@@ -53,8 +53,15 @@
 
         <!-- Date Input -->
         <ion-item>
-          <ion-label position="floating">Image link</ion-label>
-          <ion-textarea name="location" [(ngModel)]="imageUrl" required></ion-textarea>
+          <ion-button fill="clear" expand="block" class="add-event-button" (click)="fileInput.click()" >Choose File</ion-button>
+          <input
+            #fileInput
+            type="file"
+            accept="image/*"
+            (change)="onChooseFile($event)"
+            hidden
+          />
+          <ion-img *ngIf="previewImage" [src]="previewImage"></ion-img>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Date</ion-label>

@@ -17,7 +17,8 @@ export class AddEventPage implements OnInit, AfterViewInit {
   dateTimestamp: number = 0;
   location: string = '';
   formattedDate: string = '';
-  imageUrl: string = '';
+  previewImage: String = '';
+  imageUrl: String = '';
   showDatePicker: boolean = false; // Flag to control visibility of datetime picker
 
   @ViewChild('datePicker', { static: false }) datePicker!: IonDatetime; // Using the non-null assertion operator
@@ -81,5 +82,30 @@ export class AddEventPage implements OnInit, AfterViewInit {
   onLogoClick($event: MouseEvent) {
     this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
     this.cdr.detectChanges();
+  }
+
+  onChooseFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0]; // Selectăm primul fișier (dacă sunt mai multe)
+      const reader = new FileReader();
+
+      // Citim fișierul și îl convertim în Base64
+      reader.onload = () => {
+        const base64String = reader.result as String; // Conversia în Base64
+        this.imageUrl = base64String.slice(23);
+        console.log(base64String);
+        this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
+      };
+
+      reader.onerror = (error) => {
+        console.error('Eroare la citirea fișierului:', error);
+      };
+
+      reader.readAsDataURL(file); // Începem citirea fișierului
+    } else {
+      console.warn('Niciun fișier selectat.');
+    }
   }
 }
