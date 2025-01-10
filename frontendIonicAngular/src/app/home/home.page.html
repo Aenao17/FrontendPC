@@ -30,8 +30,8 @@
         <ion-card *ngFor="let event of events" class="rounded-card">
 
             <!-- Event Image -->
-            <ion-img [src]="event.image" class="rounded-img post-image"></ion-img>
 
+          <ion-img [src]="event.image" class="rounded-img post-image"></ion-img>
             <!-- Action Buttons: Join and View Details -->
             <div class="button-group">
                 <ion-button fill="clear" class="small-button" (click)="joinEvent(event)">

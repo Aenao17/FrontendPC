@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from 'src/app/services/event.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {lastValueFrom} from "rxjs";
 import {PostService} from "../../services/post.service";
 
@@ -23,6 +23,7 @@ export class EventPage implements OnInit {
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
+    private router: Router,
   ) {
   }
 
@@ -37,6 +38,7 @@ export class EventPage implements OnInit {
     }
     try {
       this.event = await this.eventService.getEvent(idL);
+      this.event.image = "data:image/jpeg;base64," + this.event.image;
     } catch (err) {
       console.error(err);
     }
