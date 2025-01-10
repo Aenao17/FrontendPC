@@ -30,6 +30,7 @@ export class EventPage implements OnInit {
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'] as any;
     console.log(this.activatedRoute.snapshot);
+
     let idL;
     if (typeof id == 'string') {
       idL = parseInt(id);
