@@ -36,7 +36,6 @@ export class EventPage implements OnInit {
       console.error(err);
     }
 
-
     let user = {name: 'calin'};
     let content = 'WOOOW';
     let post = {content, user};
