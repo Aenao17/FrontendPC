@@ -29,10 +29,15 @@ export class HomePage implements OnInit {
     async ngOnInit() {
         try {
             this.events = await this.eventService.getEvents() as Event[];
+            for (let event of this.events){
+              event.image = "data:image/jpeg;base64," + event.image;
+            }
+
         } catch (err) {
             console.error(err);
         }
     }
+
 
     // Typing event as 'Event' to fix implicit 'any' type
     joinEvent(event: Event) {
