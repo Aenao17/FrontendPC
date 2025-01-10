@@ -5,7 +5,5 @@ export interface Post extends DBObject {
     description: string;
     image: string;
     eventId?: number;
-    event?: Event;
-    commentIds?: number[];
     comments?: Comment[];
 };
