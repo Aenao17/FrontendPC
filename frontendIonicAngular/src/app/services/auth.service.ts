@@ -73,8 +73,6 @@ export class AuthService {
     const body = {
       username,
       password,
-      email: '',
-      fullname: ''
     };
 
     return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
