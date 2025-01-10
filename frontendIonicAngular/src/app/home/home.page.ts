@@ -42,18 +42,12 @@ export class HomePage implements OnInit {
 
     // Typing event as 'Event' to fix implicit 'any' type
     viewEvent(event: Event) {
-      console.log('Viewing event:', event);
-        this.navCtrl.navigateForward("/event", { replaceUrl: true, skipLocationChange: false, state: {
-            id: event.id
-        } });
-        this.cdr.markForCheck();
-        // this.router.navigateByUrl(`/event/${event.id}`);
+        console.log('Viewing event:', event);
+        this.router.navigate(['event', event.id]);
     }
 
     addEvent(){
-        // this.router.navigateByUrl('/add-event');
-        this.navCtrl.navigateForward("/add-event", { replaceUrl: true, skipLocationChange: false });
-        this.cdr.markForCheck();
+        this.router.navigate(['add-event']);
     }
 
     addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
@@ -71,11 +65,6 @@ export class HomePage implements OnInit {
     }
 
     onLogoClick($event: MouseEvent) {
-        this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
-        this.cdr.detectChanges();
+        this.router.navigate(['home']);
     }
-
-  goToAddPost() {
-    this.router.navigate(['/post']);
-  }
 }

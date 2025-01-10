@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 
@@ -38,7 +38,8 @@ const routes: Routes = [
         path: 'add-event',
         loadChildren: () => import('./pages/add-event/add-event.module').then( m => m.AddEventPageModule),
         canActivate: [AuthGuard]
-    },  {
+    },
+  {
     path: 'post',
     loadChildren: () => import('./pages/post/post.module').then( m => m.PostPageModule)
   },

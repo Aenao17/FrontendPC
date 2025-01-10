@@ -63,7 +63,7 @@ export class PostPage implements OnInit, AfterViewInit {
   }
 
   onLogoClick($event: MouseEvent): void {
-    this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
+    this.navCtrl.navigateBack("/home");
     this.cdr.detectChanges();
   }
 }
