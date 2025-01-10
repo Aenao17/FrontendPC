@@ -203,6 +203,8 @@ ion-card-content {
     height: auto;
     object-fit: cover; /* Asigură că imaginea se potrivește perfect în container */
     image-rendering: optimizeQuality; /* Poți ajusta în funcție de înălțimea dorită */
+  max-height: 100px;
+  max-width: 200px;
 }
 /* New post container with scroll effect */
 .post-container {

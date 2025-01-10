@@ -53,6 +53,10 @@
 
         <!-- Date Input -->
         <ion-item>
+          <ion-label position="floating">Image link</ion-label>
+          <ion-textarea name="location" [(ngModel)]="imageUrl" required></ion-textarea>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating">Date</ion-label>
           <div class="date-picker-container">
             <ion-input

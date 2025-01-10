@@ -1,65 +1,78 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" (click)="onLogoClick($event)">
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear" class="log-out-button" (click)="logout()">
-        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+    <ion-card *ngIf="event" class="event-card">
+        <ion-card-header>
+            <ion-card-title>{{ event.name }}</ion-card-title>
+            <ion-card-subtitle>{{ event.date | date }}</ion-card-subtitle>
+        </ion-card-header>
 
-<ion-content [fullscreen]="true" class="instagram-interface">
-  <!-- Event Description Section -->
-  <div *ngIf="event" class="event-description">
-    <ion-card>
-      <img [src]="event.image" alt="Event Image" />
-      <ion-card-content>
-        <h2>{{ event.name }}</h2>
-        <p>{{ event.description }}</p>
-        <p><strong>Location:</strong> {{ event.location }}</p>
-        <p><strong>Date:</strong> {{ event.date | date: 'medium' }}</p>
-      </ion-card-content>
+        <ion-img [src]="event.image" class="event-image"></ion-img>
+
+        <ion-card-content>
+            <p>{{ event.description }}</p>
+            <p>Location: {{ event.location }}</p>
+        </ion-card-content>
+
+        <ion-button fill="clear" class="join-event-button">
+            <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon> JOIN
+        </ion-button>
     </ion-card>
-  </div>
+    <!-- make a post -->
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Make a post</ion-card-title>
+        </ion-card-header>
 
-  <!-- Posts Section -->
-  <div class="post-container">
-    <div *ngFor="let post of event.posts" class="post-card">
-      <img [src]="post.image" alt="Post Image" class="post-image" />
-      <div class="post-content">
-        <h3 class="post-title">{{ post.name }}</h3>
-        <p class="post-description">{{ post.description }}</p>
+        <ion-card-content>
+            <ion-item>
 
-        <!-- Add Comment Section -->
-        <div class="add-comment-section">
-          <ion-item lines="none">
-            <ion-input
-              [(ngModel)]="post.newComment"
-              placeholder="Write a comment..."
-              class="comment-input"
-            ></ion-input>
-            <ion-button
-              fill="clear"
-              color="primary"
-              class="add-comment-button"
-            >
-              <ion-icon name="send-outline"></ion-icon>
+                <ion-textarea placeholder="Write something..." [(ngModel)]="postContent"></ion-textarea>
+            </ion-item>
+
+            <ion-button fill="clear" class="post-button" (click)="makePost()">
+                <ion-icon name="add-circle-outline" slot="start"></ion-icon> Post
             </ion-button>
-          </ion-item>
-        </div>
+        </ion-card-content>
+    </ion-card>
+    <!-- Posts -->
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>Posts</ion-card-title>
+        </ion-card-header>
 
-        <!-- Comments Section -->
-        <div *ngIf="post.comments.length > 0" class="comments-section">
-          <div *ngFor="let comment of post.comments" class="comment">
-            <p>
-              <strong>{{ comment.user.fullname }}</strong>: {{ comment.message }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let post of posts">
+
+                    <ion-label>
+                        <h2>{{ post.user.name }}</h2>
+                        <p>{{ post.content }}</p>
+                    </ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <ion-list>
+        <ion-item>
+            <ion-card>
+                <ion-card-title>Gasire Sponsori</ion-card-title>
+                <ion-card-content>
+                    <h3>Cautam sponsori pentru eveniment</h3>
+                    <h3 [ngStyle]="{'color': stat1 === 'Gata' ? 'green' : 'black'}">Status: {{ this.stat1 }}</h3>
+                    <h3>Deadline: 12.12.2024</h3>
+                </ion-card-content>
+            </ion-card>
+            <ion-button (click)="handleClick($event, 1)">Take</ion-button>
+        </ion-item>
+        <ion-item>
+            <ion-card>
+                <ion-card-title>Gasire Locatie</ion-card-title>
+                <ion-card-content>
+                    <h3>Cautam o locatie pentru eveniment</h3>
+                    <h3 [ngStyle]="{'color': stat2 === 'Gata' ? 'green' : 'black'}">Status: {{ this.stat2 }}</h3>
+                    <h3>Deadline: 13.12.2024</h3>
+                </ion-card-content>
+            </ion-card>
+            <ion-button (click)="handleClick($event, 2)">Take</ion-button>
+        </ion-item>
+    </ion-list>
 </ion-content>

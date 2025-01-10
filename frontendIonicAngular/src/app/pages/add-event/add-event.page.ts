@@ -13,107 +13,73 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
   title: string = '';
   description: string = '';
-  location: string = '';
   date: Date = new Date();
-  formattedDate: string = '';
-  showDatePicker: boolean = false; // Toggles the datetime picker visibility
   dateTimestamp: number = 0;
+  location: string = '';
+  formattedDate: string = '';
+  imageUrl: string = '';
+  showDatePicker: boolean = false; // Flag to control visibility of datetime picker
 
-  @ViewChild('datePicker', { static: false }) datePicker!: IonDatetime;
+  @ViewChild('datePicker', { static: false }) datePicker!: IonDatetime; // Using the non-null assertion operator
 
-  constructor(
-    private auth: AuthService,
-    private eventService: EventService,
-    private router: Router,
+  constructor(private auth: AuthService, private eventService: EventService, private router: Router,
     private navCtrl: NavController,
     private cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
-  ngOnInit(): void {
-    // Initialize with default values or perform necessary setup
-    console.log('Component initialized with values:', {
-      title: this.title,
-      description: this.description,
-      location: this.location,
-      date: this.date
-    });
+  ngOnInit() {
+    console.log('Initial values:', this.title, this.description, this.location, this.date);
   }
 
-  ngAfterViewInit(): void {
-    // Perform actions that require the view to be fully initialized
-    console.log("View initialized");
+  // This lifecycle hook ensures that the `ViewChild` is available
+  ngAfterViewInit() {
+    // If needed, additional logic can be added here to handle the reference after the view is initialized
+    console.log("afterViewInit");
   }
 
-  /**
-   * Logs out the user using the AuthService.
-   */
+  // Logout functionality
   logout(): void {
     this.auth.logout();
-    console.log('User logged out');
   }
 
-  /**
-   * Toggles the visibility of the date picker.
-   */
+  // Open Date Picker
   openDatePicker(): void {
-    this.showDatePicker = !this.showDatePicker;
+    this.showDatePicker = !this.showDatePicker; // Toggle the visibility of the datetime picker
   }
 
-  /**
-   * Updates the date and its formatted representation based on user selection.
-   * @param event - Event object containing the selected date value.
-   */
+  // Handle date change
   onDateChange(event: any): void {
-    const selectedDate = event.detail?.value;
-    if (selectedDate) {
-      this.date = new Date(selectedDate);
-      this.formattedDate = this.date.toLocaleString(); // Format for display
-      this.dateTimestamp = Math.floor(this.date.getTime() / 1000); // Convert to UNIX timestamp
-      console.log('Selected Date:', this.formattedDate, 'Timestamp:', this.dateTimestamp);
-    } else {
-      console.error('Invalid date selected');
-    }
+    this.date = new Date(event.detail.value);
+    console.log(typeof(this.date));
+    console.log("DAta selectata" + this.date);
+    this.formattedDate = new Date(this.date).toLocaleString();
+    this.dateTimestamp = this.date.getTime();
+    console.log("TIme starmp", this.dateTimestamp);
   }
 
-  /**
-   * Handles the submission of the event form.
-   */
+  // Add event to the server
   async addEvent(): Promise<void> {
-    // Validate form fields
+    // Basic form validation
     if (!this.title || !this.description || !this.location) {
       alert('Please fill all the fields.');
       return;
     }
 
     try {
-      // Add event using EventService
-      const response = await this.eventService.addEvent(
-        this.title,
-        this.description,
-        this.location,
-        this.dateTimestamp,
-        '' // Image is not provided in this example
-      );
+      // Call the event service to add the event without image
+      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, this.imageUrl);
       console.log('Event added successfully:', response);
 
-      // Show success message and redirect
-      alert('Event added successfully!');
-      this.router.navigate(['/events']); // Navigate to the events page
+      // Optionally, redirect after success
+      this.router.navigate(['/home'], { replaceUrl: true, skipLocationChange: false });  // Example redirection
 
     } catch (error) {
       console.error('Error adding event:', error);
-      alert('An error occurred while adding the event. Please try again.');
+      // alert('An error occurred while adding the event. Please try again.');
     }
   }
-
-  /**
-   * Handles navigation to the home page when the logo is clicked.
-   * @param $event - The MouseEvent triggered by the logo click.
-   */
-  onLogoClick($event: MouseEvent): void {
+  onLogoClick($event: MouseEvent) {
     this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
     this.cdr.detectChanges();
-    console.log('Navigated back to home');
   }
-
 }
