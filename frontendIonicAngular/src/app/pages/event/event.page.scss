@@ -220,3 +220,21 @@
 .circular-log-out-button {
   animation-delay: 0.6s;
 }
+
+.rounded-card {
+  width: 100%; /* Increase width to make the cards wider */
+  max-width: 1600px; /* Optional: set a maximum width for readability */
+  margin: 0 auto; /* Center align cards */
+  background-color: white; /* Set background to white */
+  border-radius: 10px; /* Add rounded corners to the card */
+  padding: 30px; /* More padding inside the card */
+  height: auto; /* Increase height to make the cards longer */
+  position: relative;
+  overflow: hidden; /* Prevent content from spilling out of the card */
+  transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.rounded-card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}

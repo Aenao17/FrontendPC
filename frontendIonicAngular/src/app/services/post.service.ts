@@ -41,4 +41,19 @@ export class PostService {
     return lastValueFrom(this.http.post(this.apiUrl, body));
   }
 
+  addComment(postId: number, comment: string): Promise<any> {
+    // Get the logged-in user's ID from the AuthService
+    const userId = this.authService.getId();
+
+    // Build the Comment object to be sent to the server
+    const body = {
+      userId: userId,
+      postId: postId,
+      message: comment,
+    };
+
+    // Use HttpClient to send the POST request
+    return lastValueFrom(this.http.post('http://localhost:8080/api/post-comments', body));
+  }
+
 }

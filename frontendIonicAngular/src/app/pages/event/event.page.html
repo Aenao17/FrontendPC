@@ -58,9 +58,19 @@
             <ion-list>
                 <ion-item *ngFor="let post of posts">
 
-                    <ion-card class="event-card">
+                    <ion-card class="event-card" >
                       <ion-card-title>{{ post.name }}</ion-card-title>
                       <ion-card-content>{{ post.description }}</ion-card-content>
+                      <ion-img [src]="post.image" class="event-image"></ion-img>
+                      <ion-item *ngFor="let commen of post.comments">
+                        <ion-textarea readonly>{{commen.message}}</ion-textarea>
+                      </ion-item>
+                      <ion-item>
+                        <ion-textarea placeholder="Write comment..." [(ngModel)]="comment"></ion-textarea>
+                      </ion-item>
+                      <ion-button fill="clear" class="add-event-button" (click)="addComment(post.id)">
+                          <ion-icon name="add-circle-outline" slot="start"></ion-icon> Comment
+                      </ion-button>
                     </ion-card>
                 </ion-item>
             </ion-list>

@@ -18,6 +18,7 @@ export class EventPage implements OnInit {
   public stat2: any = "Activ";
   public imageUrl: string ="";
   public previewImage: string="";
+  public comment: string="";
 
   constructor(
     private eventService: EventService,
@@ -44,6 +45,9 @@ export class EventPage implements OnInit {
       console.error(err);
     }
     this.posts = this.event.posts;
+    for (let post of this.posts) {
+      post.image = "data:image/jpeg;base64," + post.image;
+    }
   }
 
   onChooseFile(event: Event): void {
@@ -56,7 +60,7 @@ export class EventPage implements OnInit {
       // Citim fișierul și îl convertim în Base64
       reader.onload = () => {
         const base64String = reader.result as string; // Conversia în Base64
-        this.imageUrl = base64String;
+        this.imageUrl = base64String.slice(23);
         this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
       };
 
@@ -74,7 +78,12 @@ export class EventPage implements OnInit {
     let name = this.postContentName;
     let desc = this.postContentDesc;
 
-    this.postService.addPost(name,desc, this.previewImage,this.event.id);
+    this.postService.addPost(name,desc, this.imageUrl,this.event.id);
+  }
+
+  async addComment(postId: number) {
+    let comment = this.comment;
+    this.postService.addComment(postId, comment);
   }
 
   handleClick($event: MouseEvent, number: number) {
