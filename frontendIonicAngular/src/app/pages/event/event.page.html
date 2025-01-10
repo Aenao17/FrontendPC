@@ -32,7 +32,7 @@
             <ion-textarea placeholder="Write description..." [(ngModel)]="postContentDesc"></ion-textarea>
           </ion-item>
           <ion-item>
-            <ion-button (click)="fileInput.click()">Choose File</ion-button>
+            <ion-button fill="clear" expand="block" (click)="fileInput.click()" class="add-event-button">Choose File</ion-button>
             <input
               #fileInput
               type="file"
@@ -43,7 +43,7 @@
             <ion-img *ngIf="previewImage" [src]="previewImage"></ion-img>
             </ion-item>
 
-            <ion-button fill="clear" class="post-button" (click)="makePost()">
+            <ion-button fill="clear" class="add-event-button" (click)="makePost()">
                 <ion-icon name="add-circle-outline" slot="start"></ion-icon> Post
             </ion-button>
         </ion-card-content>
