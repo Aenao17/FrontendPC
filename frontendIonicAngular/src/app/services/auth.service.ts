@@ -107,14 +107,14 @@ export class AuthService {
 	}
 
 	// Logout method
-	logout() {
+	async logout() {
+		this.navCtrl.navigateRoot("/login");
+		try {
+			await lastValueFrom(this.http.get(`${this.apiUrl}/logout`));
+		} catch (err) {
+			console.error(`Failed to remove token from server`, err);
+		}
 		this.storage.remove('_token').then(() => {
-			lastValueFrom(this.http.get(`${this.apiUrl}/logout`)).then((response: any) => {
-				console.log(response);
-			}).catch((err: any) => {
-				console.error(err);
-			});
-			this.navCtrl.navigateRoot("/login");
 		}).catch((err) => {
 			console.error(err);
 		});
