@@ -3,6 +3,7 @@ import {EventService} from 'src/app/services/event.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {lastValueFrom} from "rxjs";
 import {PostService} from "../../services/post.service";
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-event',
@@ -10,6 +11,7 @@ import {PostService} from "../../services/post.service";
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
+  public eventId = '';
   public event: any
   public postContentName: string = '';
   public postContentDesc: string = '';
@@ -21,6 +23,7 @@ export class EventPage implements OnInit {
   public comment: string="";
 
   constructor(
+    private auth: AuthService,
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
@@ -29,17 +32,13 @@ export class EventPage implements OnInit {
   }
 
   async ngOnInit() {
-    const id = this.activatedRoute.snapshot.params['id'] as any;
-    console.log(this.activatedRoute.snapshot);
+    this.eventId = this.activatedRoute.snapshot.params['id'] as any;
+    await this.initEvent();
+  }
 
-    let idL;
-    if (typeof id == 'string') {
-      idL = parseInt(id);
-    } else {
-      idL = id;
-    }
+  public async initEvent() {
     try {
-      this.event = await this.eventService.getEvent(idL);
+      this.event = await this.eventService.getEvent(this.eventId);
       this.event.image = "data:image/jpeg;base64," + this.event.image;
     } catch (err) {
       console.error(err);
@@ -47,6 +46,13 @@ export class EventPage implements OnInit {
     this.posts = this.event.posts;
     for (let post of this.posts) {
       post.image = "data:image/jpeg;base64," + post.image;
+      // for (let i = 0; i < post.comments.length; i++) {
+      //   this.auth.getById(post.comments[i].id).then((response: any) => {
+      //     post.comments[i].username = response.username;
+      //   }).catch((err) => {
+      //     console.error(`Failed to get user data on comment ${post.comments[i].id} for user (userId)`, err);
+      //   });
+      // }
     }
   }
 
@@ -60,7 +66,7 @@ export class EventPage implements OnInit {
       // Citim fișierul și îl convertim în Base64
       reader.onload = () => {
         const base64String = reader.result as string; // Conversia în Base64
-        this.imageUrl = base64String.slice(23);
+        this.imageUrl = base64String.slice(22);
         this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
       };
 
@@ -78,12 +84,32 @@ export class EventPage implements OnInit {
     let name = this.postContentName;
     let desc = this.postContentDesc;
 
-    this.postService.addPost(name,desc, this.imageUrl,this.event.id);
+    try {
+      await this.postService.addPost(name,desc, this.imageUrl,this.event.id);
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+
+    this.initEvent().then(() => {})
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   async addComment(postId: number) {
     let comment = this.comment;
-    this.postService.addComment(postId, comment);
+    try {
+      await this.postService.addComment(postId, comment);
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+    
+    this.initEvent().then(() => {})
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   handleClick($event: MouseEvent, number: number) {

@@ -14,8 +14,8 @@ export class LoginGuard {
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
         let isAuthenticated = false;
 
-        const id = await this.storage.get('id');
-        if (id != null) {
+        const token = await this.storage.get('_token');
+        if (token != null) {
             isAuthenticated = true;
         }
 

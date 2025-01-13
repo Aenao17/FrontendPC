@@ -107,14 +107,20 @@ export class AuthService {
 	}
 
 	// Logout method
-	logout() {
-		this.storage.remove('id').then(() => {
-			this.storage.remove('username');
-			this.storage.remove('fullname');
-			this.storage.remove('email');
-			this.navCtrl.navigateRoot("/login");
+	async logout() {
+		this.navCtrl.navigateRoot("/login");
+		try {
+			await lastValueFrom(this.http.get(`${this.apiUrl}/logout`));
+		} catch (err) {
+			console.error(`Failed to remove token from server`, err);
+		}
+		this.storage.remove('_token').then(() => {
 		}).catch((err) => {
 			console.error(err);
 		});
+	}
+
+	public getById(id: string) {
+		return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
 	}
 }

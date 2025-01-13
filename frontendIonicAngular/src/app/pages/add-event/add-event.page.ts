@@ -51,7 +51,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
   // Handle date change
   onDateChange(event: any): void {
     this.date = new Date(event.detail.value);
-    console.log(typeof(this.date));
+    console.log(typeof (this.date));
     console.log("DAta selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
     this.dateTimestamp = this.date.getTime();
@@ -72,7 +72,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
       console.log('Event added successfully:', response);
 
       // Optionally, redirect after success
-      this.router.navigate(['/home'], { replaceUrl: true, skipLocationChange: false });  // Example redirection
+      this.router.navigate(['/home']);
 
     } catch (error) {
       console.error('Error adding event:', error);
@@ -80,8 +80,8 @@ export class AddEventPage implements OnInit, AfterViewInit {
     }
   }
   onLogoClick($event: MouseEvent) {
-    this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
-    this.cdr.detectChanges();
+    // this.navCtrl.navigateBack("/home", { replaceUrl: true, skipLocationChange: false });
+    this.router.navigate(['/home']);
   }
 
   onChooseFile(event: Event): void {
@@ -94,7 +94,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
       // Citim fișierul și îl convertim în Base64
       reader.onload = () => {
         const base64String = reader.result as String; // Conversia în Base64
-        this.imageUrl = base64String.slice(23);
+        this.imageUrl = base64String.slice(22);
         console.log(base64String);
         this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
       };
