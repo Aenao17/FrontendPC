@@ -41,6 +41,11 @@
   width: 20%;
 }
 
+.add-post-button{
+  background: linear-gradient(135deg, #ff8a65, #ff7043);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
 .event-card {
     background-color: antiquewhite;
     padding: 15px;
@@ -49,4 +54,187 @@
     align-content: center;
     margin: auto;
     display: flex;
+}
+
+/* General styling for the page */
+.content-bg {
+  background-color: #f0f4f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Toolbar styling */
+.custom-toolbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 18px 35px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Umbra subtilă */
+  border: none; /* Elimină orice bordură */
+  outline: none; /* Elimină outline-ul */
+}
+
+/* Logo hover effects */
+.header-logo {
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border: none; /* Ensures no border around the logo */
+  outline: none; /* Ensures no outline when focused */
+}
+
+.header-logo:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* Form container styling */
+.form-container {
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Event Card Styling */
+.add-event-card {
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin-top: 100px;
+  transition: box-shadow 0.3s ease;
+}
+
+.add-event-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.add-event-form ion-item {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+
+/* Buttons */
+.add-event-button {
+  background: linear-gradient(135deg, #ff6f61, #ffb74d);
+  color: white;
+  font-weight: 600;
+  padding: 14px;
+  border-radius: 50px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.add-event-button:hover {
+  background: linear-gradient(135deg, #ff8a65, #ff7043);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Circular Log Out Button */
+.circular-log-out-button {
+  background: linear-gradient(135deg, #ff7043, #ffb74d);
+  color: white;
+  font-weight: bold;
+  border-radius: 70%;
+  width: 80px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 80px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  border: none; /* Elimină orice bordură */
+  outline: none; /* Elimină outline-ul */
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
+}
+
+.circular-log-out-button:hover {
+  background: linear-gradient(135deg, #ff8a65 0%, #ff7043 50%);
+  transform: scale(1.1);
+  box-shadow: inset 0 0 10px 24px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+  border: none; /* Elimină orice bordură */
+  outline: none; /* Elimină outline-ul */
+
+}
+
+/* Date Picker Styling */
+.date-picker-container {
+  margin-left:120px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.date-picker-container ion-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #ff7043;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.date-picker-container ion-icon:hover {
+  transform: scale(1.25);
+  color: #ff7043; /* Change color on hover */
+}
+
+/* Smooth animations for elements */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.add-event-card,
+.add-event-button,
+.circular-log-out-button {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.add-event-card {
+  animation-delay: 0.2s;
+}
+
+.add-event-button {
+  animation-delay: 0.4s;
+}
+
+.circular-log-out-button {
+  animation-delay: 0.6s;
+}
+
+.rounded-card {
+  width: 100%; /* Increase width to make the cards wider */
+  max-width: 1600px; /* Optional: set a maximum width for readability */
+  margin: 0 auto; /* Center align cards */
+  background-color: white; /* Set background to white */
+  border-radius: 10px; /* Add rounded corners to the card */
+  padding: 30px; /* More padding inside the card */
+  height: auto; /* Increase height to make the cards longer */
+  position: relative;
+  overflow: hidden; /* Prevent content from spilling out of the card */
+  transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.rounded-card:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }

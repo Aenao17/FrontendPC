@@ -23,7 +23,7 @@ export class EventService {
         return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
     }
 
-    addEvent(title: string, description: string, location:string, date: number, imageUrl: string): Promise<any> {
+    addEvent(title: string, description: string, location:string, date: number, imageUrl: String): Promise<any> {
       console.log(date);
       // let aux_date = dat
       const body = {

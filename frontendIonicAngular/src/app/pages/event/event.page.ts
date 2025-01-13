@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {EventService} from 'src/app/services/event.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {lastValueFrom} from "rxjs";
+import {PostService} from "../../services/post.service";
 
 @Component({
   selector: 'app-event',
@@ -9,48 +11,79 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class EventPage implements OnInit {
   public event: any
-  public postContent: string = '';
+  public postContentName: string = '';
+  public postContentDesc: string = '';
   public posts: any = [];
   public stat1: string = "Activ";
   public stat2: any = "Activ";
+  public imageUrl: string ="";
+  public previewImage: string="";
+  public comment: string="";
 
   constructor(
     private eventService: EventService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private postService: PostService,
+    private router: Router,
   ) {
   }
 
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'] as any;
+    console.log(this.activatedRoute.snapshot);
+
     let idL;
     if (typeof id == 'string') {
       idL = parseInt(id);
     } else {
       idL = id;
     }
-    idL = 1;
     try {
       this.event = await this.eventService.getEvent(idL);
-      console.log(this.event);
+      this.event.image = "data:image/jpeg;base64," + this.event.image;
     } catch (err) {
       console.error(err);
     }
-    let user = {name: 'calin'};
-    let content = 'WOOOW';
-    let post = {content, user};
-    this.posts.push(post);
-    setTimeout(() => {
-      this.stat1 = "Gata";
-    }, 20000);
+    this.posts = this.event.posts;
+    for (let post of this.posts) {
+      post.image = "data:image/jpeg;base64," + post.image;
+    }
   }
 
+  onChooseFile(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0]; // Selectăm primul fișier (dacă sunt mai multe)
+      const reader = new FileReader();
+
+      // Citim fișierul și îl convertim în Base64
+      reader.onload = () => {
+        const base64String = reader.result as string; // Conversia în Base64
+        this.imageUrl = base64String.slice(23);
+        this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
+      };
+
+      reader.onerror = (error) => {
+        console.error('Eroare la citirea fișierului:', error);
+      };
+
+      reader.readAsDataURL(file); // Începem citirea fișierului
+    } else {
+      console.warn('Niciun fișier selectat.');
+    }
+  }
 
   async makePost() {
-    let user = {name: 'calin'};
-    const content = this.postContent;
-    let post = {content, user};
-    this.posts.push(post);
-    console.log(this.posts);
+    let name = this.postContentName;
+    let desc = this.postContentDesc;
+
+    this.postService.addPost(name,desc, this.imageUrl,this.event.id);
+  }
+
+  async addComment(postId: number) {
+    let comment = this.comment;
+    this.postService.addComment(postId, comment);
   }
 
   handleClick($event: MouseEvent, number: number) {
