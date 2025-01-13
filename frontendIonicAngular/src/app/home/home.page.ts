@@ -27,6 +27,9 @@ export class HomePage implements OnInit {
     ) { }
 
     async ngOnInit() {
+    }
+
+    async ionViewWillEnter() {
         try {
             this.events = await this.eventService.getEvents() as Event[];
             for (let event of this.events){
@@ -37,7 +40,6 @@ export class HomePage implements OnInit {
             console.error(err);
         }
     }
-
 
     // Typing event as 'Event' to fix implicit 'any' type
     joinEvent(event: Event) {

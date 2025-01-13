@@ -119,4 +119,8 @@ export class AuthService {
 			console.error(err);
 		});
 	}
+
+	public getById(id: string) {
+		return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
+	}
 }
