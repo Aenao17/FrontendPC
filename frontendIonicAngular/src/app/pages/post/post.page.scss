@@ -1,12 +1,15 @@
 /* General Content Background */
 .content-bg {
-  background-color: #f0f4f8; /* Light blue background */
+  background-color: transparent;
+  background-image: url('/assets/illustrations/Asset 2@4x.png');;
+  background-size: cover;/* Light blue background */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   flex-direction: column;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Cantarell', sans-serif;
+
 }
 
 /* Header Styling */
@@ -17,6 +20,15 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
   outline: none;
+}
+.card-title {
+  font-size: 1.6rem; /* Slightly larger for better emphasis */
+  font-weight: 700; /* Bold to make it stand out */
+  color: #222; /* Darker color for a stronger presence */
+  margin-bottom: 10px; /* Spacing below for better layout */
+  text-align: left; /* Aligns the title to the left for consistency */
+  letter-spacing: 0.5px; /* Adds slight spacing for a polished look */
+  word-break: break-word; /* Prevents text overflow issues */
 }
 
 /* Logo Styling */
@@ -39,21 +51,20 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 56px); /* Full height minus header */
-  max-width: 450px;
+  max-width: 800px; /* Lățime mai mare pentru container */
   width: 100%;
   margin: auto;
-  flex-direction: column;
 }
 
 /* Card Styling */
 .add-post-card {
   width: 100%;
-  max-width: 500px;
-  padding: 30px;
+  max-width: 700px; /* Crește dimensiunea cardului */
+  padding: 40px; /* Crește padding-ul pentru mai mult spațiu */
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  margin-top: 100px;
+  margin-top: -20px;
   transition: box-shadow 0.3s ease;
 }
 
@@ -62,30 +73,32 @@
 }
 
 .add-post-form ion-item {
-  margin-bottom: 16px;
+  margin-bottom: 20px; /* Mai mult spațiu între elemente */
 }
 
 /* Form Labels and Inputs */
 ion-label {
-  font-size: 14px;
+  font-size: 16px; /* Text mai mare */
   color: #666; /* Subtle gray */
 }
 
 ion-input,
 ion-textarea {
-  --padding-start: 8px;
-  --padding-end: 8px;
-  font-size: 16px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  font-size: 18px; /* Dimensiune text mai mare */
+  padding: 12px; /* Spațiu suplimentar în interior */
 }
 
 /* Submit Button */
 .add-post-button {
-  margin-top: 16px;
+  margin-top: 20px;
   background: linear-gradient(135deg, #ff6f61, #ffb74d);
   color: white;
   font-weight: 600;
-  padding: 14px;
+  padding: 16px; /* Buton mai mare */
   border-radius: 50px;
+  font-size: 18px; /* Dimensiune text mai mare */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   text-transform: uppercase;
@@ -96,6 +109,7 @@ ion-textarea {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Circular Log Out Button */
 .circular-log-out-button {
@@ -148,3 +162,22 @@ ion-textarea {
     margin: 0 16px;
   }
 }
+/* Footer Wave Styling */
+.footer-wave-container {
+  position: absolute;
+  width: 100%;
+  margin-top: 0px;
+  background-color: white;
+  overflow: hidden;
+}
+
+/* Imaginea de fundal a footer-ului */
+.footer-wave-image {
+  margin-top: 0px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+

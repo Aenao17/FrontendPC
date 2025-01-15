@@ -105,7 +105,7 @@ export class EventPage implements OnInit {
       console.error(err);
       return;
     }
-    
+
     this.initEvent().then(() => {})
       .catch((err) => {
         console.error(err);
@@ -121,5 +121,13 @@ export class EventPage implements OnInit {
         this.stat2 = "In progres";
       }
     }
+  }
+
+  logout() {
+    this.auth.logout();
+  }
+
+  onLogoClick($event: MouseEvent) {
+    this.router.navigate(['home']);
   }
 }
