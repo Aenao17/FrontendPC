@@ -18,7 +18,7 @@
 
     <ion-img [src]="event.image" class="event-image"></ion-img>
 
-    <ion-card-content>
+    <ion-card-content class="event-sus">
       {{event.name}} <br>
       Data: {{ event.date | date }} <br>
       Location: {{event.location}} <br>
@@ -29,7 +29,7 @@
   </ion-card>
 
   <!-- Make a Post -->
-  <ion-card>
+  <ion-card  class="post-card">
     <ion-card-header>
       <ion-card-title class="card-title">Make a Post</ion-card-title>
     </ion-card-header>
@@ -60,7 +60,7 @@
   </ion-card>
 
   <!-- Posts Section -->
-  <ion-card>
+  <ion-card class="post-card">
     <ion-card-header>
       <ion-card-title class="card-title">Posts</ion-card-title>
     </ion-card-header>
