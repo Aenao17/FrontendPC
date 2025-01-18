@@ -52,7 +52,7 @@ export class AddEventPage implements OnInit, AfterViewInit {
   onDateChange(event: any): void {
     this.date = new Date(event.detail.value);
     console.log(typeof (this.date));
-    console.log("DAta selectata" + this.date);
+    console.log("Data selectata" + this.date);
     this.formattedDate = new Date(this.date).toLocaleString();
     this.dateTimestamp = this.date.getTime();
     console.log("TIme starmp", this.dateTimestamp);

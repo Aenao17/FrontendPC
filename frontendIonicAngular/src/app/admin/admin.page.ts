@@ -10,8 +10,6 @@ import { StorageService } from '../services/storage.service';
 })
 export class AdminPage implements OnInit {
 
-
-
   users: User[] = [];
   current_username: string = "";
 

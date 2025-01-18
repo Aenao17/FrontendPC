@@ -92,6 +92,15 @@ header h1 {
   margin-bottom: 20px; /* Space between image and content */
 }
 
+.event-image{
+  max-width: 20%;
+  max-height: 20%;
+  width: auto;
+  height: auto;
+  margin-bottom: 20px;
+
+}
+
 .event-card-content {
   padding: 20px;
 }

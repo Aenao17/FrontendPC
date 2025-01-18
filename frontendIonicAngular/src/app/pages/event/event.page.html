@@ -106,7 +106,7 @@
     </ion-list>
 
     <div class="ion-padding">
-      <ion-button expand="block" type="submit" [disabled]="taskForm.invalid">Create Task</ion-button>
+      <ion-button expand="block" type="submit" fill="clear" class="join-button" [disabled]="taskForm.invalid">Create Task</ion-button>
     </div>
   </form>
 
@@ -125,7 +125,7 @@
 
   </ion-list>
   }
-  @if(this.role === "VOLUNTEER") {
+  @if(this.role === "VOLUNTEER" || this.role === "PM") {
   <ion-list>
     @for(task of this.tasks; track $index) {
     <ion-item>

@@ -35,6 +35,7 @@ export class HomePage  {
             this.events = await this.eventService.getEvents() as Event[];
             for (let event of this.events){
               event.image = "data:image/jpeg;base64," + event.image;
+              console.log("Hereee"+event.image);
               let parts = event.participants as number[]
               const user:any = await this.auth.getByUsername(await this.storage.get("username"));
               for (let part of parts){
