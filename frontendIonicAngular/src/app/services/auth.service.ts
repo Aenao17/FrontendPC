@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { StorageService } from './storage.service';
 import { NavController } from '@ionic/angular';
+import { User } from '../interfaces/user';
 
 @Injectable({
 	providedIn: 'root',
@@ -121,7 +122,16 @@ export class AuthService {
 		return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
 	}
 
-  public getByUsername(id: string){
-    return lastValueFrom(this.http.get(`${this.apiUrl}/username/${id}`));
-  }
+	public getByUsername(id: string) {
+		return lastValueFrom(this.http.get(`${this.apiUrl}/username/${id}`));
+	}
+
+	public getAllUsers() {
+		return lastValueFrom(this.http.get<User[]>(`${this.apiUrl}`));
+	}
+
+	public changeRole(id: string, role: string) {
+		let _id = Number(id);
+		return lastValueFrom(this.http.put<User>(`${this.apiUrl}/role`, {id: id, role: role}));
+	}
 }

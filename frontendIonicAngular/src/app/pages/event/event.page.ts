@@ -1,16 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {EventService} from 'src/app/services/event.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {lastValueFrom} from "rxjs";
-import {PostService} from "../../services/post.service";
+import { Component, OnInit } from '@angular/core';
+import { EventService } from 'src/app/services/event.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { lastValueFrom } from "rxjs";
+import { PostService } from "../../services/post.service";
 import { AuthService } from 'src/app/services/auth.service';
-
+import { StorageService } from 'src/app/services/storage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TaskService } from 'src/app/services/task.service';
+import { TaskInterface } from 'src/app/interfaces/task';
 @Component({
   selector: 'app-event',
   templateUrl: './event.page.html',
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
+
+
   public eventId = '';
   public event: any
   public postContentName: string = '';
@@ -18,9 +23,14 @@ export class EventPage implements OnInit {
   public posts: any = [];
   public stat1: string = "Activ";
   public stat2: any = "Activ";
-  public imageUrl: string ="";
-  public previewImage: string="";
+  public imageUrl: string = "";
+  public previewImage: string = "";
   public comments: { [key: number]: string } = {};
+  public role: string = "USER";
+  public taskForm: FormGroup;
+  public createdTask: TaskInterface[] = [];
+  public tasks: TaskInterface[] = [];
+
 
   constructor(
     private auth: AuthService,
@@ -28,12 +38,26 @@ export class EventPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
     private router: Router,
+    private storage: StorageService,
+    private fb: FormBuilder,
+    private taskService: TaskService
   ) {
+    this.taskForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      description: ['', Validators.required],
+      deadline: ['', Validators.required],
+      eventID: [null],
+    });
   }
 
   async ngOnInit() {
     this.eventId = this.activatedRoute.snapshot.params['id'] as any;
     await this.initEvent();
+    this.role = await this.storage.get("role");
+    this.taskService.getAllAvailableTask(Number(this.eventId)).then((result) => {
+      console.log("Finlanda");
+      this.tasks = result;
+    });
   }
 
   public async initEvent() {
@@ -46,13 +70,6 @@ export class EventPage implements OnInit {
     this.posts = this.event.posts;
     for (let post of this.posts) {
       post.image = "data:image/jpeg;base64," + post.image;
-      // for (let i = 0; i < post.comments.length; i++) {
-      //   this.auth.getById(post.comments[i].id).then((response: any) => {
-      //     post.comments[i].username = response.username;
-      //   }).catch((err) => {
-      //     console.error(`Failed to get user data on comment ${post.comments[i].id} for user (userId)`, err);
-      //   });
-      // }
     }
   }
 
@@ -85,13 +102,13 @@ export class EventPage implements OnInit {
     let desc = this.postContentDesc;
 
     try {
-      await this.postService.addPost(name,desc, this.imageUrl,this.event.id);
+      await this.postService.addPost(name, desc, this.imageUrl, this.event.id);
     } catch (err) {
       console.error(err);
       return;
     }
 
-    this.initEvent().then(() => {})
+    this.initEvent().then(() => { })
       .catch((err) => {
         console.error(err);
       });
@@ -110,15 +127,11 @@ export class EventPage implements OnInit {
     }
   }
 
-  handleClick($event: MouseEvent, number: number) {
-    {
-      alert("Task-ul ti-a fost asignat!");
-      if (number === 1) {
-        this.stat1 = "In progres";
-      } else {
-        this.stat2 = "In progres";
-      }
-    }
+  handleClick(task: TaskInterface) {
+      this.taskService.changeStatusTask(task.name, "IN_PROGRESS").then((result) => {
+        alert("Task-ul ti-a fost asignat!");
+        task.status = result.status;
+      })
   }
 
   logout() {
@@ -127,5 +140,19 @@ export class EventPage implements OnInit {
 
   onLogoClick($event: MouseEvent) {
     this.router.navigate(['home']);
+  }
+
+  createTask() {
+    if (this.taskForm.valid) {
+      this.taskForm.patchValue({
+        eventID: this.eventId
+      })
+
+      this.taskService.createTask(this.taskForm.value).then((result: TaskInterface) => {
+        alert("S-a creat task-ul");
+        this.createdTask.push(result);
+        console.log(this.createdTask);
+      })
+    }
   }
 }

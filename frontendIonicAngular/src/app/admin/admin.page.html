@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="custom-toolbar">
+    <ion-title>
+      <img src="assets/illustrations/Asset 2@4x.png" alt="Logo" class="header-logo" (click)="onLogoClick($event)">
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" class="log-out-button" (click)="logout()">
+        <ion-icon name="log-in-outline" slot="icon-only"></ion-icon> Log out
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="user-list">
+    @for(user of this.users; track $index) {
+    @if (user.username !== current_username) {
+    <ion-card class="user-card">
+      <ion-card-title>
+        Username: {{ user.username }}
+        <br>
+        ID: {{user.id}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        Role: {{ user.role }}
+      </ion-card-subtitle>
+      <ion-card-content>
+        <div class="button-group">
+          <ion-button *ngIf="user.role !== 'USER'" class="role-button" color="primary" (click)="onClick('USER', user.id , $event)">USER</ion-button>
+          <ion-button *ngIf="user.role !== 'VOLUNTEER'" class="role-button" color="tertiary" (click)="onClick('VOLUNTEER', user.id , $event)">Volunteer</ion-button>
+          <ion-button *ngIf="user.role !== 'PM'" class="role-button" color="secondary" (click)="onClick('PM', user.id , $event)">Project Manager</ion-button>
+          <ion-button *ngIf="user.role !== 'ADMIN'" class="role-button" color="danger" (click)="onClick('ADMIN', user.id , $event)">Admin</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    }
+    }
+  </ion-list>
+</ion-content>

@@ -43,6 +43,11 @@ const routes: Routes = [
     path: 'post',
     loadChildren: () => import('./pages/post/post.module').then( m => m.PostPageModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
+    canActivate: [AuthGuard]
+  },
 
 ];
 

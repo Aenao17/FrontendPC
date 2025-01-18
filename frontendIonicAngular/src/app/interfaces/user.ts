@@ -2,7 +2,7 @@ import { DBObject } from "./db-object";
 
 export interface User extends DBObject {
   id: string;
-    role: 'USER';
+    role: string;
     username: string;
     password?: string;
     email: string;
