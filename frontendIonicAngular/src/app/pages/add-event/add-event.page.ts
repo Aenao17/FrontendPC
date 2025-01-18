@@ -68,7 +68,10 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
     try {
       // Call the event service to add the event without image
-      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, this.imageUrl);
+      var user = this.auth.getUsername();
+      var userr = await this.auth.getByUsername(user);
+      console.log("USERRRR: "+userr);
+      const response = await this.eventService.addEvent(this.title, this.description, this.location, this.dateTimestamp, this.imageUrl, userr);
       console.log('Event added successfully:', response);
 
       // Optionally, redirect after success
@@ -93,8 +96,8 @@ export class AddEventPage implements OnInit, AfterViewInit {
 
       // Citim fișierul și îl convertim în Base64
       reader.onload = () => {
-        const base64String = reader.result as String; // Conversia în Base64
-        this.imageUrl = base64String.slice(22);
+        const base64String = reader.result as String;// Conversia în Base64
+        this.imageUrl = base64String.slice(23);
         console.log(base64String);
         this.previewImage = base64String; // Stocăm imaginea pentru previzualizare
       };

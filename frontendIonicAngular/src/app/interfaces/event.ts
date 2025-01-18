@@ -13,4 +13,5 @@ export interface Event extends DBObject {
   organizer?: User;
   postIds?: number[];
   posts?: Post[];
+  participants?: number[];
 }

@@ -27,7 +27,7 @@ export class SignupPage implements OnInit {
     }
 
     signup(): void {
-        this.auth.signup(this.username, this.password, this.email, this.password).then(() => {
+        this.auth.signup(this.username, this.password, this.email, this.fullname).then(() => {
             // this.router.navigateByUrl('/login');
             this.navCtrl.navigateRoot("/login");
         }).catch(() => {

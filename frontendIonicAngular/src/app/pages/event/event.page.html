@@ -14,21 +14,18 @@
 <ion-content [fullscreen]="true" class="content-background">
   <!-- Event Section -->
   <ion-card *ngIf="event" class="event-card">
-    <ion-card-header>
-      <ion-card-title class="card-title">{{ event.name }}</ion-card-title>
-      <ion-card-subtitle class="card-subtitle">{{ event.date | date }}</ion-card-subtitle>
-    </ion-card-header>
+
 
     <ion-img [src]="event.image" class="event-image"></ion-img>
 
     <ion-card-content>
-      <p class="event-description">{{ event.description }}</p>
-      <p class="event-location">📍 Location: {{ event.location }}</p>
+      {{event.name}} <br>
+      Data: {{ event.date | date }} <br>
+      Location: {{event.location}} <br>
+      {{event.participantCount}} participants <br>
+      {{ event.description }}
     </ion-card-content>
 
-    <ion-button fill="clear" class="styled-button">
-      <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon> JOIN
-    </ion-button>
   </ion-card>
 
   <!-- Make a Post -->
@@ -74,14 +71,15 @@
           <ion-card class="event-card">
             <ion-card-title class="card-title">{{ post.name }}</ion-card-title>
             <ion-card-content>{{ post.description }}</ion-card-content>
-            <ion-img [src]="post.image" class="event-image"></ion-img>
+            <ion-img *ngIf="post.image !== 'data:image/jpeg;base64,'" [src]="post.image" class="event-image"></ion-img>
 
             <ion-item *ngFor="let comment of post.comments">
               <ion-textarea readonly>{{ comment.message }}</ion-textarea>
             </ion-item>
 
+            <!-- Use comments[post.id] for each post -->
             <ion-item>
-              <ion-textarea placeholder="Write comment..." [(ngModel)]="comment"></ion-textarea>
+              <ion-textarea placeholder="Write comment..." [(ngModel)]="comments[post.id]"></ion-textarea>
             </ion-item>
 
             <ion-button fill="clear" class="styled-button" (click)="addComment(post.id)">
@@ -92,6 +90,7 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
 
   <!-- Tasks Section -->
   <ion-list>

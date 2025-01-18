@@ -23,7 +23,6 @@ export class AuthService {
 		private router: Router,
 		private navCtrl: NavController
 	) {
-		// Load user info from storage upon initialization
 		setTimeout(() => {
 			this.storage.get('id').then((id) => {
 				this.id = id;
@@ -31,7 +30,7 @@ export class AuthService {
 				console.error(err);
 			});
 
-			// Assuming you store username, fullname, and email in storage as well
+
 			this.storage.get('username').then((username) => {
 				this.username = username;
 			}).catch((err) => {
@@ -72,9 +71,7 @@ export class AuthService {
 	login(username: string, password: string): Promise<any> {
 		const body = {
 			username,
-			password,
-			email: '',
-			fullname: ''
+			password
 		};
 
 		return lastValueFrom(this.http.post(`${this.apiUrl}/login`, body));
@@ -123,4 +120,8 @@ export class AuthService {
 	public getById(id: string) {
 		return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
 	}
+
+  public getByUsername(id: string){
+    return lastValueFrom(this.http.get(`${this.apiUrl}/username/${id}`));
+  }
 }

@@ -20,7 +20,7 @@ export class EventPage implements OnInit {
   public stat2: any = "Activ";
   public imageUrl: string ="";
   public previewImage: string="";
-  public comment: string="";
+  public comments: { [key: number]: string } = {};
 
   constructor(
     private auth: AuthService,
@@ -98,18 +98,16 @@ export class EventPage implements OnInit {
   }
 
   async addComment(postId: number) {
-    let comment = this.comment;
+    let comment = this.comments[postId]; // Get the comment for this post
+    if (!comment || comment.trim() === "") return;
+
     try {
       await this.postService.addComment(postId, comment);
+      this.comments[postId] = ""; // Clear the comment input for this post
+      await this.initEvent(); // Refresh posts and comments
     } catch (err) {
       console.error(err);
-      return;
     }
-
-    this.initEvent().then(() => {})
-      .catch((err) => {
-        console.error(err);
-      });
   }
 
   handleClick($event: MouseEvent, number: number) {

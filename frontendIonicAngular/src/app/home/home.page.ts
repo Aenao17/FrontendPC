@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { StorageService } from '../services/storage.service';
 import { Router } from '@angular/router';
 import { Event } from '../interfaces/event';
@@ -11,11 +11,12 @@ import { NavController } from '@ionic/angular';
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage  {
     public events: Event[] = [
     ];
+    public participa: any[] =[];
 
-    public currentUser = 'John Doe';
+    //public currentUser = 'John Doe';
 
     constructor(
         private eventService: EventService,
@@ -26,15 +27,24 @@ export class HomePage implements OnInit {
         private cdr: ChangeDetectorRef
     ) { }
 
-    async ngOnInit() {
-    }
+
 
     async ionViewWillEnter() {
         try {
+
             this.events = await this.eventService.getEvents() as Event[];
             for (let event of this.events){
               event.image = "data:image/jpeg;base64," + event.image;
+              let parts = event.participants as number[]
+              const user:any = await this.auth.getByUsername(await this.storage.get("username"));
+              for (let part of parts){
+                if(part==user.id){
+                  this.participa.push(event.id);
+                  break;
+                }
+              }
             }
+            console.log(this.participa);
 
         } catch (err) {
             console.error(err);
@@ -42,9 +52,12 @@ export class HomePage implements OnInit {
     }
 
     // Typing event as 'Event' to fix implicit 'any' type
-    joinEvent(event: Event) {
+    async joinEvent(event: Event) {
         console.log('Joining event:', event);
-        // Add logic to handle joining event
+        this.participa.push(event.id);
+        const user:any = await this.auth.getByUsername(await this.storage.get("username"));
+        this.eventService.joinEvent(Number(event.id),Number(user.id));
+        event.participantCount = event.participantCount + 1;
     }
 
     // Typing event as 'Event' to fix implicit 'any' type
@@ -57,15 +70,6 @@ export class HomePage implements OnInit {
         this.router.navigate(['add-event']);
     }
 
-    addComment(post: { newComment: string; comments: Array<{ author: string; text: string }> }) {
-        if (post.newComment.trim()) {
-            post.comments.push({
-                author: this.currentUser, // Use dynamic current user here
-                text: post.newComment,
-            });
-            post.newComment = ''; // Reset the input field after adding a comment
-        }
-    }
 
     logout() {
         this.auth.logout();

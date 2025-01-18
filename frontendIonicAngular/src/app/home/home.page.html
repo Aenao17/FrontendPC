@@ -34,7 +34,7 @@
           <ion-img [src]="event.image" class="rounded-img post-image"></ion-img>
             <!-- Action Buttons: Join and View Details -->
             <div class="button-group">
-                <ion-button fill="clear" class="small-button" (click)="joinEvent(event)">
+                <ion-button fill="clear" *ngIf="!participa.includes(event.id)" class="small-button" (click)="joinEvent(event)">
                     <ion-icon name="checkmark-circle-outline" class="button-icon"></ion-icon>
                     JOIN
                 </ion-button>
@@ -47,11 +47,12 @@
             <!-- Event Header -->
             <ion-card-header>
                 <ion-card-title>{{ event.name }}</ion-card-title>
-                <ion-card-subtitle>{{ event.date | date }}</ion-card-subtitle>
+                <ion-card-subtitle>Date: {{ event.date | date }}</ion-card-subtitle>
+                <ion-card-subtitle>{{event.participantCount}} participants</ion-card-subtitle>
             </ion-card-header>
-
             <!-- Event Description -->
             <ion-card-content>
+              Data: {{ event.date | date }} <br>
                 {{ event.description }}
             </ion-card-content>
         </ion-card>

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { lastValueFrom } from "rxjs";
 import { environment } from "src/environments/environment.prod";
 import {AuthService} from "./auth.service";
+import {User} from "../interfaces/user";
 
 @Injectable({
     providedIn: 'root',
@@ -13,7 +14,8 @@ export class EventService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     public getEvents() {
-        return lastValueFrom(this.http.get(this.apiUrl));
+        var x = lastValueFrom(this.http.get(this.apiUrl));
+        return x;
     }
 
     public getEvent(id: any) {
@@ -23,8 +25,8 @@ export class EventService {
         return lastValueFrom(this.http.get(`${this.apiUrl}/${id}`));
     }
 
-    addEvent(title: string, description: string, location:string, date: number, imageUrl: String): Promise<any> {
-      console.log(date);
+    addEvent(title: string, description: string, location:string, date: number, imageUrl: String, organizer: any): Promise<any> {
+      console.log("VR AICI "+JSON.stringify(organizer));
       // let aux_date = dat
       const body = {
         id:1,
@@ -34,16 +36,18 @@ export class EventService {
         participantCount: 0,
         location: location,
         image: imageUrl,
-        organizer:{
-          id: 2,
-          username: 'admin',
-          password: 'admin',
-          fullname: 'calin',
-          email: 'navadarucalin@yahoo.com',
-        },
-        posts:[]
+        organizer: organizer,
+        posts:[],
+        participants:[]
       };
       return lastValueFrom(this.http.post(`${this.apiUrl}`, body));
+    }
+
+    joinEvent(id: number, idU:number){
+      const body = {
+      }
+      console.log(body);
+      return lastValueFrom(this.http.post(`${this.apiUrl}/join/${id}/${idU}`, body));
     }
 
 }
